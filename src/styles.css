@@ -294,10 +294,8 @@ p + p { margin-top: 2.4mm; }
 .p2 .svc.feature .ico { left: 4mm; color: var(--white); }
 .p2 .svc.feature .no { color: var(--grey); }
 .p2 .svc.feature p { color: #E3EAEE; }
-.p2 .stack-a { left: 151mm; top: 151mm; width: 59mm; height: 72mm;
+.p2 .stack-a { left: 151mm; top: 151mm; width: 59mm; height: 146mm;
   clip-path: polygon(10mm 0, 100% 0, 100% 100%, 0 100%); }
-.p2 .stack-b { left: 151mm; top: 226mm; width: 59mm; height: 71mm;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 10mm 100%); }
 
 /* =================================================================
    PAGE 3 — PROPERTY MANAGEMENT PARTNERSHIPS
@@ -383,3 +381,13 @@ p + p { margin-top: 2.4mm; }
 
 .p3 .ben-head .logo.mono { position: relative; width: 9mm; height: 9mm; margin-bottom: 1.6mm; justify-content: flex-end; }
 .p3 .ben-head .logo.mono img { object-position: right center; }
+
+/* p4 — navy services shard in the collage band */
+.p4 .svc-shard { height: 56mm; background: var(--navy); padding: 7mm 0 0 20mm;
+  clip-path: polygon(10mm 0, 100% 0, calc(100% - 10mm) 100%, 0 100%); }
+.p4 .svc-shard ul { list-style: none; margin-top: 3.4mm; }
+.p4 .svc-shard li { font: 700 6.6pt/1 "Archivo", sans-serif; font-stretch: 110%; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--white); padding: 1.55mm 0; border-top: 0.25mm solid rgba(209,217,220,.18); width: 40mm; }
+.p4 .svc-shard li:first-child { border-top-color: var(--steel); }
+
+.p2 .p2-folio { right: 66mm; }

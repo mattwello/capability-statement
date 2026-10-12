@@ -31,34 +31,24 @@ Every photo frame is a named **slot**. Until a file is supplied, the slot shows 
 
 **Photos:** originals live in `assets/photos/originals/` and are never modified. `python3 scripts/prepare-photos.py` writes colour-graded copies to `graded/` (print) and `graded-web/` (email), and `src/assets-map.js` assigns them to slots. Alternatively, drop a file named after its slot (e.g. `assets/photos/cover-hero.jpg`) into `assets/photos/` and run `npm run build`.
 
-| Slot | Page | Best photo for it |
+| Slot | Page | Photo |
 |---|---|---|
-| `cover-hero` | 1 | Completed residential property or a strong finished project (landscape, largest image in the document) |
-| `cover-inset` | 1 | Switchboard work, close and sharp (portrait crop) |
-| `about-founders` | 2 | Matthew & Mark together on the rooftop solar installation |
-| `about-lighting` | 2 | Residential lighting installation |
-| `about-power` | 2 | Power point installation / maintenance |
-| `pm-hero` | 3 | Electrician working on a residential switchboard |
-| `pm-testing` | 3 | Electrical testing / fault finding |
-| `work-kitchen` | 4 | Completed kitchen lighting / renovation |
-| `work-maint` | 4 | General electrical maintenance on-site |
-| `work-board` | 4 | Switchboard work (different shot from page 1 if possible) |
-| `work-solar` | 4 | Residential solar installation |
-| `work-exterior` | 4 | Residential property exterior |
+| `cover-hero` | 1 | Two-storey exterior with solar |
+| `cover-inset` | 1 | Ceiling downlight cut-out |
+| `about-founders` | 2 | Matthew & Mark on the rooftop |
+| `about-work` | 2 | Wall chasing / rewiring |
+| `pm-hero` | 3 | Reviewing plans on-site |
+| `pm-onsite` | 3 | Solar install in progress |
+| `work-kitchen` | 4 | Completed kitchen pendant lighting |
+| `work-residential` | 4 | Aerial, residential solar |
+| `work-solar` | 4 | Completed rooftop array |
 
 To fine-tune a crop (for example, to keep faces in frame), edit `pos` / `zoom` for that slot in `src/assets-map.js`.
 
 ## Outstanding information before commercial distribution
 
 - [x] **Original logo files**: supplied and placed (cover, contact tile, page 3 monogram). An SVG/vector master would still be best for commercial print.
-- [x] **Photos placed (6 supplied):** two-storey exterior (cover), rooftop solar (cover inset), Matthew & Mark on the rooftop (page 2), on-site plans review (page 3), kitchen pendant lighting (page 4), aerial solar (page 4)
-- [ ] **Photos still needed (6 slots)**, mostly maintenance work, which the brief wants emphasised:
-  - `about-lighting`: lighting installation, page 2
-  - `about-power`: power point installation / maintenance, page 2
-  - `pm-testing`: testing / fault finding, page 3
-  - `work-maint`: general maintenance on-site, page 4
-  - `work-board`: switchboard work, page 4
-  - `work-exterior`: another residential exterior, page 4
+- [x] **Photography:** all 9 supplied photos placed, each used once. No placeholders, stock or generated imagery remain.
 - [ ] **Phone number**: `[CONFIRM PHONE NUMBER]`, page 4
 - [ ] **Email address**: `[CONFIRM EMAIL ADDRESS]`, page 4
 - [ ] **Electrical contractor licence number** (EC number), page 4

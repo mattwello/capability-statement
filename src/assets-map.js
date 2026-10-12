@@ -20,23 +20,20 @@ window.WCE_ASSETS = {
 
   photos: {
     // PAGE 1 — COVER
-    "cover-hero":      { src: "../assets/photos/graded/two-storey-exterior-solar.jpg", pos: "50% 4%", zoom: 1.16 }, // completed residential property / hero project
-    "cover-inset":     { src: "../assets/photos/graded/rooftop-solar-array.jpg", pos: "45% 60%" }, // switchboard work, close & sharp
+    "cover-hero":       { src: "../assets/photos/graded/two-storey-exterior-solar.jpg", pos: "50% 4%", zoom: 1.16 }, // completed residential property
+    "cover-inset":      { src: "../assets/photos/graded/ceiling-downlight-cutout.jpg", pos: "52% 58%", zoom: 1.45 },             // downlight cut-out, on the tools
 
     // PAGE 2 — ABOUT & CAPABILITIES
-    "about-founders":  { src: "../assets/photos/graded/founders-matthew-mark-rooftop-solar.jpg", pos: "66% 40%", zoom: 1.24 }, // Matthew & Mark together on rooftop solar
-    "about-lighting":  { src: null, pos: "50% 50%" }, // residential lighting installation
-    "about-power":     { src: null, pos: "50% 50%" }, // power point installation / maintenance
+    "about-founders":   { src: "../assets/photos/graded/founders-matthew-mark-rooftop-solar.jpg", pos: "66% 40%", zoom: 1.24 },
+    "about-work":       { src: "../assets/photos/graded/wall-chasing-rewire.jpg", pos: "28% 50%" },                  // wall chasing / rewiring
 
     // PAGE 3 — PROPERTY MANAGEMENT PARTNERSHIPS
-    "pm-hero":         { src: "../assets/photos/graded/onsite-plans-review.jpg", pos: "60% 40%" }, // electrician working on residential switchboard
-    "pm-testing":      { src: null, pos: "50% 50%" }, // electrical testing & fault finding
+    "pm-hero":          { src: "../assets/photos/graded/onsite-plans-review.jpg", pos: "60% 40%" },                  // reviewing plans on-site
+    "pm-onsite":        { src: "../assets/photos/graded/solar-install-in-progress.jpg", pos: "52% 64%", zoom: 1.6 },            // solar install in progress
 
     // PAGE 4 — OUR WORK & CONTACT
-    "work-kitchen":    { src: "../assets/photos/graded/kitchen-pendant-lighting.jpg", pos: "45% 38%" }, // completed kitchen lighting / renovation
-    "work-maint":      { src: null, pos: "50% 50%" }, // general electrical maintenance on-site
-    "work-board":      { src: null, pos: "50% 50%" }, // switchboard work
-    "work-solar":      { src: "../assets/photos/graded/aerial-two-storey-solar.jpg", pos: "54% 50%" }, // residential solar installation
-    "work-exterior":   { src: null, pos: "50% 60%" }, // residential property exterior
+    "work-kitchen":     { src: "../assets/photos/graded/kitchen-pendant-lighting.jpg", pos: "45% 38%" },             // completed kitchen lighting
+    "work-residential": { src: "../assets/photos/graded/aerial-two-storey-solar.jpg", pos: "54% 50%" },              // aerial, residential solar
+    "work-solar":       { src: "../assets/photos/graded/rooftop-solar-array.jpg", pos: "45% 62%" },                  // completed rooftop array
   },
 };

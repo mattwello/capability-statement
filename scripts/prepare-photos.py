@@ -8,6 +8,7 @@ Originals in assets/photos/originals/ are never modified. Faces and geometry are
 untouched: no warping, stretching or retouching. Usage: python3 scripts/prepare-photos.py
 """
 from pathlib import Path
+import numpy as np
 from PIL import Image, ImageEnhance, ImageOps
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -19,6 +20,8 @@ for d in OUT:
 
 for f in sorted(SRC.glob("*.jp*g")) + sorted(SRC.glob("*.png")):
     im = ImageOps.exif_transpose(Image.open(f)).convert("RGB")
+    rows = np.where(np.asarray(im.convert("L")).mean(1) > 12)[0]   # trim black letterbox bars (phone screenshots)
+    im = im.crop((0, int(rows.min()), im.width, int(rows.max()) + 1))
     im = ImageEnhance.Color(im).enhance(0.90)
     im = ImageEnhance.Contrast(im).enhance(1.05)
     im = ImageEnhance.Brightness(im).enhance(1.01)
