@@ -26,12 +26,9 @@ The build also runs QA. It checks that the QR code decodes to `https://www.westc
 
 Every photo frame is a named **slot**. Until a file is supplied, the slot shows a clearly labelled placeholder. Nothing is stock or generated.
 
-**Simplest:** drop files into these folders with the slot name as the filename, then run `npm run build`:
+**Logo:** the original files are in `assets/logo/originals/`. `python3 scripts/prepare-logos.py` makes the transparent versions used in the layout. It removes only the flat white or cream background, keeping the original artwork, colours and edges, and never redraws anything.
 
-```
-assets/logo/westcoast-energy-logo.svg      ← ORIGINAL logo (SVG preferred, or high-res transparent PNG)
-assets/photos/cover-hero.jpg               ← etc., names below
-```
+**Photos:** drop files into `assets/photos/` with the slot name as the filename (e.g. `assets/photos/cover-hero.jpg`), then run `npm run build`.
 
 | Slot | Page | Best photo for it |
 |---|---|---|
@@ -52,7 +49,7 @@ To fine-tune a crop (for example, to keep faces in frame), edit `pos` / `zoom` f
 
 ## Outstanding information before commercial distribution
 
-- [ ] **Original logo file** (SVG or high-res PNG with transparent background)
+- [x] **Original logo files**: supplied and placed (cover, contact tile, page 3 monogram). An SVG/vector master would still be best for commercial print.
 - [ ] **Project photography**: the 12 slots above
 - [ ] **Phone number**: `[CONFIRM PHONE NUMBER]`, page 4
 - [ ] **Email address**: `[CONFIRM EMAIL ADDRESS]`, page 4

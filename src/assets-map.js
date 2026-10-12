@@ -12,8 +12,10 @@
  */
 window.WCE_ASSETS = {
   logo: {
-    // Full-colour logo for light backgrounds (cover tab, contact tile, folios)
-    onLight: null,          // e.g. "../assets/logo/westcoast-energy-logo.png"
+    // ORIGINAL artwork with only the flat background removed (scripts/prepare-logos.py).
+    // Placed on white / off-white surfaces only.
+    lockup:   "../assets/logo/westcoast-lockup-electrical-solar_cream_transparent.png",
+    monogram: "../assets/logo/westcoast-monogram_white_transparent.png",
   },
 
   photos: {

@@ -40,7 +40,8 @@
   });
 
   document.querySelectorAll("[data-logo]").forEach((holder) => {
-    const src = (A.logo || {}).onLight || AUTO.logo;
+    const kind = holder.dataset.logo || "lockup";
+    const src = (A.logo || {})[kind] || (kind === "lockup" ? AUTO.logo : null);
     if (src) {
       const img = document.createElement("img");
       img.src = src;
