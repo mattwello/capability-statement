@@ -24,7 +24,7 @@ window.WCE_ASSETS = {
     "cover-inset":     { src: "../assets/photos/graded/rooftop-solar-array.jpg", pos: "45% 60%" }, // switchboard work, close & sharp
 
     // PAGE 2 — ABOUT & CAPABILITIES
-    "about-founders":  { src: null, pos: "50% 35%" }, // Matthew & Mark together on rooftop solar
+    "about-founders":  { src: "../assets/photos/graded/founders-matthew-mark-rooftop-solar.jpg", pos: "66% 40%", zoom: 1.24 }, // Matthew & Mark together on rooftop solar
     "about-lighting":  { src: null, pos: "50% 50%" }, // residential lighting installation
     "about-power":     { src: null, pos: "50% 50%" }, // power point installation / maintenance
 

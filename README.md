@@ -51,9 +51,8 @@ To fine-tune a crop (for example, to keep faces in frame), edit `pos` / `zoom` f
 ## Outstanding information before commercial distribution
 
 - [x] **Original logo files**: supplied and placed (cover, contact tile, page 3 monogram). An SVG/vector master would still be best for commercial print.
-- [x] **Photos placed (5 supplied):** two-storey exterior (cover), rooftop solar (cover inset), on-site plans review (page 3), kitchen pendant lighting (page 4), aerial solar (page 4)
-- [ ] **Photos still needed (7 slots)**, mostly maintenance work, which the brief wants emphasised:
-  - `about-founders`: Matthew & Mark together (rooftop solar shot), page 2
+- [x] **Photos placed (6 supplied):** two-storey exterior (cover), rooftop solar (cover inset), Matthew & Mark on the rooftop (page 2), on-site plans review (page 3), kitchen pendant lighting (page 4), aerial solar (page 4)
+- [ ] **Photos still needed (6 slots)**, mostly maintenance work, which the brief wants emphasised:
   - `about-lighting`: lighting installation, page 2
   - `about-power`: power point installation / maintenance, page 2
   - `pm-testing`: testing / fault finding, page 3
