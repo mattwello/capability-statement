@@ -25,14 +25,15 @@ window.WCE_ASSETS = {
 
     // PAGE 2 — ABOUT & CAPABILITIES
     "about-founders":   { src: "../assets/photos/graded/founders-matthew-mark-rooftop-solar.jpg", pos: "66% 40%", zoom: 1.24 },
-    "about-work":       { src: "../assets/photos/graded/wall-chasing-rewire.jpg", pos: "28% 50%" },                  // wall chasing / rewiring
+    "about-work":       { src: "../assets/photos/graded/power-point-testing.jpg", pos: "58% 50%" },                  // power point testing, occupied home
 
     // PAGE 3 — PROPERTY MANAGEMENT PARTNERSHIPS
     "pm-hero":          { src: "../assets/photos/graded/onsite-plans-review.jpg", pos: "60% 40%" },                  // reviewing plans on-site
-    "pm-onsite":        { src: "../assets/photos/graded/solar-install-in-progress.jpg", pos: "52% 64%", zoom: 1.6 },            // solar install in progress
+    "pm-onsite":        { src: "../assets/photos/graded/meter-box-testing.jpg", pos: "55% 35%", zoom: 1.3 },          // meter box testing
 
     // PAGE 4 — OUR WORK & CONTACT
     "work-kitchen":     { src: "../assets/photos/graded/kitchen-pendant-lighting.jpg", pos: "45% 38%" },             // completed kitchen lighting
+    "work-reno":        { src: "../assets/photos/graded/wall-chasing-rewire.jpg", pos: "35% 45%" },                  // renovation rewiring
     "work-residential": { src: "../assets/photos/graded/aerial-two-storey-solar.jpg", pos: "54% 50%" },              // aerial, residential solar
     "work-solar":       { src: "../assets/photos/graded/rooftop-solar-array.jpg", pos: "45% 62%" },                  // completed rooftop array
   },

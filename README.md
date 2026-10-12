@@ -27,7 +27,7 @@ The build also runs QA. It checks that the QR code decodes to `https://www.westc
 
 Every photo frame is a named **slot**. Until a file is supplied, the slot shows a clearly labelled placeholder. Nothing is stock or generated.
 
-**Logo:** the original files are in `assets/logo/originals/`. `python3 scripts/prepare-logos.py` makes the transparent versions used in the layout. It removes only the flat white or cream background, keeping the original artwork, colours and edges, and never redraws anything.
+**Logo:** a reversed (white) lockup is also available, at `assets/logo/westcoast-lockup-electrical-solar_reversed-white_trimmed.png`, for use on navy. The original files are in `assets/logo/originals/`. `python3 scripts/prepare-logos.py` makes the transparent versions used in the layout. It removes only the flat white or cream background, keeping the original artwork, colours and edges, and never redraws anything.
 
 **Photos:** originals live in `assets/photos/originals/` and are never modified. `python3 scripts/prepare-photos.py` writes colour-graded copies to `graded/` (print) and `graded-web/` (email), and `src/assets-map.js` assigns them to slots. Alternatively, drop a file named after its slot (e.g. `assets/photos/cover-hero.jpg`) into `assets/photos/` and run `npm run build`.
 
@@ -36,19 +36,22 @@ Every photo frame is a named **slot**. Until a file is supplied, the slot shows 
 | `cover-hero` | 1 | Two-storey exterior with solar |
 | `cover-inset` | 1 | Ceiling downlight cut-out |
 | `about-founders` | 2 | Matthew & Mark on the rooftop |
-| `about-work` | 2 | Wall chasing / rewiring |
+| `about-work` | 2 | Power point testing |
 | `pm-hero` | 3 | Reviewing plans on-site |
-| `pm-onsite` | 3 | Solar install in progress |
+| `pm-onsite` | 3 | Meter box testing |
 | `work-kitchen` | 4 | Completed kitchen pendant lighting |
+| `work-reno` | 4 | Wall chasing / renovation rewiring |
 | `work-residential` | 4 | Aerial, residential solar |
 | `work-solar` | 4 | Completed rooftop array |
+
+Also in `assets/photos/originals/` but not placed: solar install in progress (an earlier version used it on page 3).
 
 To fine-tune a crop (for example, to keep faces in frame), edit `pos` / `zoom` for that slot in `src/assets-map.js`.
 
 ## Outstanding information before commercial distribution
 
 - [x] **Original logo files**: supplied and placed (cover, contact tile, page 3 monogram). An SVG/vector master would still be best for commercial print.
-- [x] **Photography:** all 9 supplied photos placed, each used once. No placeholders, stock or generated imagery remain.
+- [x] **Photography:** 10 of the supplied photos placed, each used once. No placeholders, stock or generated imagery remain.
 - [ ] **Phone number**: `[CONFIRM PHONE NUMBER]`, page 4
 - [ ] **Email address**: `[CONFIRM EMAIL ADDRESS]`, page 4
 - [ ] **Electrical contractor licence number** (EC number), page 4

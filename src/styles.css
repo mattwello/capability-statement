@@ -383,11 +383,11 @@ p + p { margin-top: 2.4mm; }
 .p3 .ben-head .logo.mono img { object-position: right center; }
 
 /* p4 — navy services shard in the collage band */
-.p4 .svc-shard { height: 56mm; background: var(--navy); padding: 7mm 0 0 20mm;
+.p4 .svc-shard { height: 56mm; background: var(--navy); padding: 6.4mm 0 0 20mm;
   clip-path: polygon(10mm 0, 100% 0, calc(100% - 10mm) 100%, 0 100%); }
 .p4 .svc-shard ul { list-style: none; margin-top: 3.4mm; }
 .p4 .svc-shard li { font: 700 6.6pt/1 "Archivo", sans-serif; font-stretch: 110%; letter-spacing: .1em; text-transform: uppercase;
-  color: var(--white); padding: 1.55mm 0; border-top: 0.25mm solid rgba(209,217,220,.18); width: 40mm; }
+  color: var(--white); padding: 1.5mm 0; border-top: 0.25mm solid rgba(209,217,220,.18); width: 33mm; font-size: 6.2pt; }
 .p4 .svc-shard li:first-child { border-top-color: var(--steel); }
 
 .p2 .p2-folio { right: 66mm; }
