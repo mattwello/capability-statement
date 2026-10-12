@@ -14,6 +14,7 @@ const OUT = path.join(ROOT, "output");
 const PREV = path.join(OUT, "previews");
 const WEBSITE = "https://www.westcoastenergy.com.au";
 const PDF_NAME = "Westcoast-Energy_Property-Management_Capability-Statement_A4.pdf";
+const PDF_WEB_NAME = "Westcoast-Energy_Property-Management_Capability-Statement_A4_email.pdf";
 const PAGE_NAMES = ["01-Cover", "02-About-and-Capabilities", "03-Property-Management-Partnerships", "04-Our-Work-and-Contact"];
 const SCALE = 300 / 96; // 300 dpi previews
 
@@ -93,6 +94,13 @@ for (let i = 0; i < pages.length; i++) {
 
 // 6 — Verify the QR actually scans to the website (decoded from the rendered page)
 const qrShot = await (await page.$("#qr")).screenshot({ omitBackground: false });
+
+// 6b — Email-size PDF (identical layout, lighter photo copies)
+await page.goto(pathToFileURL(path.join(SRC, "index.html")).href + "?web");
+await page.waitForFunction(() => window.__WCE_READY === true, null, { timeout: 30000 });
+await page.emulateMedia({ media: "print" });
+const pdfWebPath = path.join(OUT, PDF_WEB_NAME);
+await page.pdf({ path: pdfWebPath, preferCSSPageSize: true, printBackground: true });
 const img = PNG.sync.read(qrShot);
 const pad = 40, W = img.width + pad * 2, H = img.height + pad * 2;
 const rgba = new Uint8ClampedArray(W * H * 4).fill(255);
@@ -108,6 +116,7 @@ const pdfBytes = fs.readFileSync(pdfPath);
 const pageCount = (pdfBytes.toString("latin1").match(/\/Type\s*\/Page[^s]/g) || []).length;
 const box = pdfBytes.toString("latin1").match(/\/MediaBox\s*\[\s*0 0 ([\d.]+) ([\d.]+)\]/);
 console.log(`\nPDF      ${path.relative(ROOT, pdfPath)}  (${(pdfBytes.length / 1024 / 1024).toFixed(2)} MB, ${pageCount} pages, MediaBox ${box ? `${box[1]}×${box[2]} pt` : "?"} — A4 is 595.28×841.89)`);
+console.log(`PDF      ${path.relative(ROOT, pdfWebPath)}  (${(fs.statSync(pdfWebPath).size / 1024 / 1024).toFixed(2)} MB, email size)`);
 pngs.forEach((f) => console.log(`PNG      ${path.relative(ROOT, f)}`));
 console.log(`QR       ${decoded ? `decodes to ${decoded.data} ${decoded.data === WEBSITE ? "✓" : "✗ MISMATCH"}` : "✗ could not decode"}`);
 console.log(`Assets   ${qa.missing.length ? `${qa.missing.length} slot(s) still placeholders: ${qa.missing.join(", ")}` : "all photo slots and logo filled ✓"}`);
