@@ -199,3 +199,4 @@ p + p { margin-top: 2mm; }
 .p4 .qr-tile .qr img { width: 100%; height: 100%; display: block; }
 .p4 .qr-tile .label { color: var(--white); margin-top: 3.2mm; }
 .p4 .creds .credv { display: block; font: 700 9.4pt/1.3 "Archivo", sans-serif; font-stretch: 86%; color: var(--brand); }
+.p4 .creds .credn { display: block; margin-top: .6mm; font-size: 7.2pt; line-height: 1.3; color: var(--t-mute); }

@@ -56,8 +56,8 @@ To fine-tune a crop (for example, to keep faces in frame), edit `pos` / `zoom` f
 - [x] **Email address**: hello@westcoastenergy.com.au
 - [x] **Electrical contractor licence**: EC 16993
 - [x] **ABN**: 73 687 509 566
-- [ ] **Accreditations**: only those actually held, page 4
-- [ ] **Insurance details**: only as you are happy to publish them, page 4
+- [x] **Accreditations**: Solar PV & Battery Accredited, both directors
+- [x] **Insurance**: $20 million public & products liability
 - [ ] Sign-off on the four workflow step descriptions on page 3. They were written for this document, so confirm they match how you operate.
 
 All placeholders use dashed outlines, so they can't be mistaken for final content.
