@@ -1,0 +1,121 @@
+{
+ "subject p1": {
+  "paper": 0.085,
+  "dark": 0.382,
+  "colour": 42.3,
+  "accent": 0.377,
+  "diagonal": 0.405
+ },
+ "subject p2": {
+  "paper": 0.274,
+  "dark": 0.4,
+  "colour": 37.5,
+  "accent": 0.128,
+  "diagonal": 0.446
+ },
+ "subject p3": {
+  "paper": 0.233,
+  "dark": 0.399,
+  "colour": 31.6,
+  "accent": 0.16,
+  "diagonal": 0.429
+ },
+ "subject p4": {
+  "paper": 0.421,
+  "dark": 0.286,
+  "colour": 21.1,
+  "accent": 0.056,
+  "diagonal": 0.407
+ },
+ "ref cover": {
+  "paper": 0.958,
+  "dark": 0.002,
+  "colour": 26.1,
+  "accent": 0.014,
+  "diagonal": 0.499
+ },
+ "ref p1": {
+  "paper": 0.715,
+  "dark": 0.029,
+  "colour": 5.1,
+  "accent": 0.0,
+  "diagonal": 0.214
+ },
+ "ref p2": {
+  "paper": 0.656,
+  "dark": 0.013,
+  "colour": 5.1,
+  "accent": 0.0,
+  "diagonal": 0.355
+ },
+ "ref p3": {
+  "paper": 0.594,
+  "dark": 0.029,
+  "colour": 7.9,
+  "accent": 0.001,
+  "diagonal": 0.43
+ },
+ "ref p4": {
+  "paper": 0.637,
+  "dark": 0.005,
+  "colour": 7.9,
+  "accent": 0.001,
+  "diagonal": 0.42
+ },
+ "ref p5": {
+  "paper": 0.717,
+  "dark": 0.025,
+  "colour": 13.4,
+  "accent": 0.001,
+  "diagonal": 0.465
+ },
+ "ref p6": {
+  "paper": 0.332,
+  "dark": 0.038,
+  "colour": 48.4,
+  "accent": 0.064,
+  "diagonal": 0.099
+ },
+ "ref p7": {
+  "paper": 0.592,
+  "dark": 0.03,
+  "colour": 14.9,
+  "accent": 0.002,
+  "diagonal": 0.304
+ },
+ "ref p8": {
+  "paper": 0.667,
+  "dark": 0.012,
+  "colour": 4.4,
+  "accent": 0.0,
+  "diagonal": 0.419
+ },
+ "ref p9": {
+  "paper": 0.778,
+  "dark": 0.016,
+  "colour": 17.3,
+  "accent": 0.005,
+  "diagonal": 0.499
+ },
+ "ref p10": {
+  "paper": 0.436,
+  "dark": 0.004,
+  "colour": 95.2,
+  "accent": 0.25,
+  "diagonal": 0.506
+ },
+ "ref p11": {
+  "paper": 0.648,
+  "dark": 0.022,
+  "colour": 19.8,
+  "accent": 0.002,
+  "diagonal": 0.435
+ },
+ "ref p12": {
+  "paper": 0.261,
+  "dark": 0.044,
+  "colour": 87.2,
+  "accent": 0.314,
+  "diagonal": 0.062
+ }
+}

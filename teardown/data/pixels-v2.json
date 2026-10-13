@@ -1,0 +1,30 @@
+{
+ "v2 p1": {
+  "paper": 0.039,
+  "dark": 0.553,
+  "colour": 29.6,
+  "accent": 0.26,
+  "diagonal": 0.37
+ },
+ "v2 p2": {
+  "paper": 0.533,
+  "dark": 0.164,
+  "colour": 24.4,
+  "accent": 0.08,
+  "diagonal": 0.461
+ },
+ "v2 p3": {
+  "paper": 0.543,
+  "dark": 0.291,
+  "colour": 20.9,
+  "accent": 0.033,
+  "diagonal": 0.459
+ },
+ "v2 p4": {
+  "paper": 0.485,
+  "dark": 0.297,
+  "colour": 17.8,
+  "accent": 0.037,
+  "diagonal": 0.393
+ }
+}

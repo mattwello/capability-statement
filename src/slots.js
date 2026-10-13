@@ -20,7 +20,7 @@
     if (cfg.src) {
       const img = document.createElement("img");
       // ?web → email-size build uses the lighter graded-web copies
-      img.src = location.search.includes("web") ? cfg.src.replace("/graded/", "/graded-web/") : cfg.src;
+      img.src = location.search.includes("web") ? cfg.src.replace(/\/(graded|muted)\//, "/$1-web/") : cfg.src;
       img.alt = frame.dataset.label || key;
       img.style.objectPosition = cfg.pos || "50% 50%";
       if (cfg.zoom && cfg.zoom !== 1) {

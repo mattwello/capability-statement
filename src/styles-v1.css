@@ -1,0 +1,393 @@
+/* ==================================================================
+   WESTCOAST ENERGY — CAPABILITY STATEMENT · DESIGN SYSTEM
+   A4 portrait, 210 × 297 mm. All layout in mm, type in pt.
+   ================================================================== */
+
+@font-face {
+  font-family: "Archivo";
+  src: url("fonts/archivo-latin-wdth-normal.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/inter-latin-wght-normal.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+:root {
+  /* Brand */
+  --brand: #2C526C;
+  --navy: #1B2B38;
+  --paper: #F2F0EA;
+  --white: #FFFFFF;
+  --grey: #D1D9DC;
+  /* Complementary shades */
+  --ink: #121D26;          /* deepest navy, for depth layers */
+  --steel: #6F93AA;        /* light brand tint, accents & numerals on navy */
+  --mist: #A9BCC7;         /* secondary text on navy */
+  --rule: #C9CFCF;         /* hairlines on paper */
+  --body: #33414C;         /* body text on paper */
+}
+
+@page { size: A4; margin: 0; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+body {
+  background: #8A949A;
+  font-family: "Inter", sans-serif;
+  font-size: 8.6pt;
+  line-height: 1.5;
+  color: var(--body);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+@media screen {
+  body { padding: 12mm 0; }
+  .page { margin: 0 auto 12mm; box-shadow: 0 2mm 8mm rgba(0,0,0,.35); }
+}
+@media print {
+  body { background: none; }
+}
+
+.page {
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  overflow: hidden;
+  background: var(--paper);
+  page-break-after: always;
+  break-after: page;
+}
+.page:last-child { page-break-after: auto; break-after: auto; }
+
+.abs { position: absolute; }
+svg.shape { position: absolute; inset: 0; width: 210mm; height: 297mm; overflow: visible; }
+
+/* ---------- Type ------------------------------------------------- */
+.display {
+  font-family: "Archivo", sans-serif;
+  font-weight: 800;
+  font-stretch: 118%;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+  line-height: 0.98;
+  color: var(--navy);
+}
+.display .accent { color: var(--brand); }
+.on-dark .display, .display.on-dark { color: var(--white); }
+.on-dark .display .accent { color: var(--steel); }
+
+.kicker {
+  font-family: "Archivo", sans-serif;
+  font-weight: 700;
+  font-stretch: 112%;
+  font-size: 6.6pt;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--brand);
+  display: flex;
+  align-items: center;
+  gap: 2.6mm;
+}
+.kicker::before {
+  content: "";
+  width: 9mm;
+  height: 0.6mm;
+  background: currentColor;
+  flex: none;
+}
+.kicker .num { color: var(--navy); }
+.on-dark .kicker { color: var(--steel); }
+.on-dark .kicker .num { color: var(--white); }
+
+.lead {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 10.2pt;
+  line-height: 1.42;
+  color: var(--navy);
+  letter-spacing: -0.005em;
+}
+.on-dark .lead { color: var(--white); }
+
+p + p { margin-top: 2.4mm; }
+.on-dark { color: var(--mist); }
+
+.h-item {
+  font-family: "Archivo", sans-serif;
+  font-weight: 750;
+  font-stretch: 110%;
+  font-size: 8.4pt;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.15;
+  color: var(--navy);
+}
+.on-dark .h-item { color: var(--white); }
+
+/* ---------- Photo frames ---------------------------------------- */
+.photo {
+  position: absolute;
+  overflow: hidden;
+  background: var(--brand);
+}
+.photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* colour grade is baked in by scripts/prepare-photos.py */
+}
+/* Unifying grade: faint cool shadow tint over every photograph */
+.photo.is-filled::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(27,43,56,0) 55%, rgba(27,43,56,.18) 100%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.photo.tint-strong.is-filled::after {
+  background: linear-gradient(200deg, rgba(27,43,56,0) 30%, rgba(27,43,56,.55) 100%);
+}
+
+/* Placeholder (no photo supplied yet) — deliberately obvious */
+.photo.is-empty {
+  background:
+    repeating-linear-gradient(135deg, rgba(255,255,255,.055) 0 1.2mm, transparent 1.2mm 4mm),
+    linear-gradient(160deg, #3A6280 0%, #2C526C 45%, #213E52 100%);
+}
+.photo.is-empty .ph-label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 80%;
+  text-align: center;
+  font: 600 6pt/1.35 "Inter", sans-serif;
+  color: rgba(255,255,255,.82);
+  border: 0.25mm dashed rgba(255,255,255,.55);
+  padding: 1.6mm 2.4mm;
+  background: rgba(18,29,38,.35);
+}
+.photo.is-empty .ph-label b {
+  display: block;
+  font: 700 5.6pt/1.3 "Archivo", sans-serif;
+  font-stretch: 112%;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: .6mm;
+}
+.ph-label.pos-tl { left: 6mm !important; top: 6mm !important; transform: none !important; text-align: left; }
+
+/* ---------- Logo holder ----------------------------------------- */
+.logo { position: absolute; display: flex; align-items: center; justify-content: flex-start; }
+.logo img { max-width: 100%; max-height: 100%; object-fit: contain; object-position: left center; }
+.logo.is-empty {
+  border: 0.3mm dashed var(--brand);
+  justify-content: center;
+  font: 700 5.6pt/1.2 "Archivo", sans-serif;
+  font-stretch: 112%;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--brand);
+  text-align: center;
+  padding: 1mm;
+}
+
+/* ---------- Icons ----------------------------------------------- */
+.ico { width: 8mm; height: 8mm; stroke: currentColor; fill: none; stroke-width: 1.35; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- Folio (running footer) ------------------------------ */
+.folio {
+  position: absolute;
+  left: 14mm;
+  right: 14mm;
+  bottom: 8mm;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font: 600 5.6pt/1 "Archivo", sans-serif;
+  font-stretch: 112%;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--mist);
+}
+.folio .pg { color: var(--white); }
+.folio.on-paper { color: #7D8A93; }
+.folio.on-paper .pg { color: var(--navy); }
+
+/* ---------- Placeholder text for unsupplied business details ----- */
+.tbc {
+  display: inline-block;
+  font: 600 6.6pt/1.3 "Inter", sans-serif;
+  color: var(--brand);
+  background: rgba(44,82,108,.07);
+  border: 0.25mm dashed rgba(44,82,108,.6);
+  padding: 0.7mm 1.6mm;
+  letter-spacing: 0.02em;
+}
+.on-dark .tbc { color: #fff; background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.5); }
+
+/* =================================================================
+   PAGE 1 — COVER
+   ================================================================= */
+.p1 { background: var(--navy); }
+.p1 .hero { left: 0; top: 0; width: 210mm; height: 200mm;
+  clip-path: polygon(0 0, 100% 0, 100% 75%, 0 98%); }
+.p1 .hero.is-empty .ph-label { top: 42%; }
+.p1 .inset-frame { left: 133mm; top: 157mm; width: 64mm; height: 80mm; background: var(--paper);
+  clip-path: polygon(14mm 0, 100% 0, 50mm 100%, 0 100%); }
+.p1 .inset { left: 134.6mm; top: 158.6mm; width: 60.8mm; height: 76.8mm;
+  clip-path: polygon(13.2mm 0, 100% 0, 47.6mm 100%, 0 100%); }
+.p1 .logo-tab { left: 0; top: 0; width: 82mm; height: 66mm; background: var(--white);
+  clip-path: polygon(0 0, 100% 0, calc(100% - 17mm) 100%, 0 100%); }
+.p1 .logo-tab .logo { left: 12mm; top: 10mm; width: 50mm; height: 45mm; }
+.p1 .edition { right: 14mm; top: 12mm; text-align: right;
+  font: 700 6pt/1.5 "Archivo", sans-serif; font-stretch: 112%; letter-spacing: .24em; text-transform: uppercase; color: var(--white);
+  background: rgba(27,43,56,.72); padding: 2mm 3mm; }
+.p1 .headline-wrap { left: 14mm; top: 205mm; width: 118mm; }
+.p1 .headline { font-size: 27pt; line-height: 0.96; font-stretch: 104%; }
+.p1 .sub { left: 14mm; top: 249mm; width: 118mm; }
+.p1 .sub .title { font: 600 10pt/1.3 "Inter", sans-serif; color: var(--white); letter-spacing: -0.005em; }
+.p1 .sub .place { margin-top: 1.4mm; font: 700 6.4pt/1.3 "Archivo", sans-serif; font-stretch: 112%; letter-spacing: .22em; text-transform: uppercase; color: var(--steel); }
+.p1 .base { left: 14mm; right: 14mm; bottom: 10mm; display: flex; justify-content: space-between; align-items: flex-end;
+  border-top: 0.25mm solid rgba(209,217,220,.28); padding-top: 3mm;
+  font: 600 6.4pt/1 "Archivo", sans-serif; font-stretch: 112%; letter-spacing: .2em; text-transform: uppercase; color: var(--mist); }
+.p1 .base b { color: var(--white); font-weight: 700; }
+
+/* =================================================================
+   PAGE 2 — ABOUT & CAPABILITIES
+   ================================================================= */
+.p2 .top { left: 14mm; top: 16mm; width: 96mm; }
+.p2 .top .display { font-size: 21pt; margin-top: 5mm; }
+.p2 .intro { margin-top: 7mm; }
+.p2 .intro .lead { margin-bottom: 3.2mm; }
+.p2 .founders-back { left: 122mm; top: 0; width: 88mm; height: 141mm; background: var(--navy);
+  clip-path: polygon(16mm 0, 100% 0, 100% 100%, 0 100%); }
+.p2 .founders { left: 127mm; top: 0; width: 83mm; height: 134mm;
+  clip-path: polygon(17mm 0, 100% 0, 100% 100%, 0 100%); }
+.p2 .founders-card { left: 112mm; top: 112mm; width: 74mm; background: var(--brand); color: var(--white);
+  padding: 4.2mm 5mm 4.4mm 6mm; clip-path: polygon(3.6mm 0, 100% 0, 100% 100%, 0 100%); }
+.p2 .founders-card .k { font: 700 5.8pt/1 "Archivo", sans-serif; font-stretch: 112%; letter-spacing: .24em; text-transform: uppercase; color: var(--grey); }
+.p2 .founders-card .n { margin-top: 2.2mm; font: 750 10.4pt/1.12 "Archivo", sans-serif; font-stretch: 108%; color: var(--white); }
+.p2 .founders-card .r { margin-top: 1.4mm; font: 500 7pt/1.2 "Inter", sans-serif; color: var(--grey); }
+
+.p2 .panel { left: 0; top: 0; width: 210mm; height: 297mm; }
+.p2 .cap-head { left: 14mm; top: 157mm; width: 128mm; display: flex; align-items: flex-end; justify-content: space-between; }
+.p2 .cap-head .display { font-size: 15pt; color: var(--white); margin-top: 3.4mm; }
+.p2 .cap-grid { left: 14mm; top: 183mm; width: 130mm; display: grid; grid-template-columns: 1fr 1fr; column-gap: 7mm; row-gap: 0; }
+.p2 .svc { position: relative; padding: 4.6mm 0 4.4mm 13mm; border-top: 0.25mm solid rgba(209,217,220,.2); min-height: 31mm; }
+.p2 .svc .ico { position: absolute; left: 0; top: 4.6mm; width: 8.4mm; height: 8.4mm; color: var(--steel); }
+.p2 .svc .no { font: 700 6pt/1 "Archivo", sans-serif; font-stretch: 112%; letter-spacing: .16em; color: var(--steel); margin-bottom: 1.6mm; }
+.p2 .svc p { margin-top: 1.4mm; font-size: 7.7pt; line-height: 1.45; color: var(--mist); }
+.p2 .svc.feature { background: var(--brand); margin-left: -4mm; padding-left: 17mm; padding-right: 4mm; border-top-color: transparent; }
+.p2 .svc.feature .ico { left: 4mm; color: var(--white); }
+.p2 .svc.feature .no { color: var(--grey); }
+.p2 .svc.feature p { color: #E3EAEE; }
+.p2 .stack-a { left: 151mm; top: 151mm; width: 59mm; height: 146mm;
+  clip-path: polygon(10mm 0, 100% 0, 100% 100%, 0 100%); }
+
+/* =================================================================
+   PAGE 3 — PROPERTY MANAGEMENT PARTNERSHIPS
+   ================================================================= */
+.p3 .hero { left: 92mm; top: 0; width: 118mm; height: 156mm;
+  clip-path: polygon(34mm 0, 100% 0, 100% 100%, 0 100%); }
+.p3 .top { left: 14mm; top: 18mm; width: 100mm; }
+.p3 .top .display { font-size: 27pt; line-height: 0.95; margin-top: 6mm; }
+.p3 .intro { margin-top: 7mm; width: 84mm; }
+.p3 .intro .lead { font-size: 9.6pt; margin-bottom: 3mm; }
+.p3 .inset-frame { left: 112mm; top: 124mm; width: 56mm; height: 44mm; background: var(--paper);
+  clip-path: polygon(10mm 0, 100% 0, calc(100% - 10mm) 100%, 0 100%); }
+.p3 .inset { left: 113.6mm; top: 125.6mm; width: 52.8mm; height: 40.8mm;
+  clip-path: polygon(9.4mm 0, 100% 0, calc(100% - 9.4mm) 100%, 0 100%); }
+.p3 .ben-head { left: 14mm; top: 161mm; width: 182mm; display: flex; justify-content: space-between; align-items: flex-end; }
+.p3 .ben-grid { left: 14mm; top: 175mm; width: 182mm; display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 7mm; }
+.p3 .ben { position: relative; padding: 4mm 0 3.6mm; border-top: 0.25mm solid var(--rule); }
+.p3 .ben .row { display: flex; align-items: center; gap: 2.6mm; margin-bottom: 1.8mm; }
+.p3 .ben .ico { width: 7.4mm; height: 7.4mm; color: var(--brand); flex: none; }
+.p3 .ben .no { position: absolute; right: 0; top: 4.4mm; font: 700 6pt/1 "Archivo", sans-serif; font-stretch: 112%; letter-spacing: .14em; color: #9AA7AF; }
+.p3 .ben p { font-size: 7.7pt; line-height: 1.45; }
+.p3 .ben:nth-child(-n+3) { border-top: 0.6mm solid var(--navy); }
+
+.p3 .flow-head { left: 14mm; top: 242mm; width: 182mm; display: flex; justify-content: space-between; align-items: flex-end; }
+.p3 .flow-head .display { font-size: 12pt; color: var(--white); }
+.p3 .flow-head .note { font: 500 7pt/1.3 "Inter", sans-serif; color: var(--mist); }
+.p3 .flow { left: 14mm; top: 250mm; width: 182mm; height: 32mm; display: grid; grid-template-columns: repeat(4, 1fr); column-gap: 1.2mm; }
+.p3 .step { position: relative; padding: 3mm 5mm 0 6.2mm; color: var(--white); }
+.p3 .step svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.p3 .step > * { position: relative; }
+.p3 .step .n { font: 800 15pt/1 "Archivo", sans-serif; font-stretch: 118%; color: var(--steel); }
+.p3 .step .t { margin-top: 1.6mm; font: 750 7pt/1.15 "Archivo", sans-serif; font-stretch: 110%; letter-spacing: .06em; text-transform: uppercase; color: var(--white); }
+.p3 .step .d { margin-top: 1.2mm; font: 400 6.4pt/1.38 "Inter", sans-serif; color: var(--mist); }
+.p3 .step.last .n { color: var(--white); }
+.p3 .step.last .d { color: #E3EAEE; }
+
+/* =================================================================
+   PAGE 4 — OUR WORK & CONTACT
+   ================================================================= */
+.p4 .top { left: 14mm; top: 16mm; width: 86mm; }
+.p4 .top .display { font-size: 21pt; margin-top: 5mm; }
+.p4 .intro { margin-top: 6mm; }
+.p4 .intro .lead { font-size: 9.6pt; margin-bottom: 3mm; }
+.p4 .kitchen { left: 104mm; top: 0; width: 106mm; height: 98mm;
+  clip-path: polygon(22mm 0, 100% 0, 100% 100%, 0 100%); }
+.p4 .shards { left: 0; top: 104mm; width: 210mm; height: 56mm; }
+.p4 .shard { height: 56mm; }
+.p4 .caps { left: 14mm; top: 163mm; width: 182mm; height: 4mm;
+  font: 700 5.6pt/1.3 "Archivo", sans-serif; font-stretch: 112%; letter-spacing: .18em; text-transform: uppercase; color: #6E7C86; }
+.p4 .caps span { position: absolute; top: 0; white-space: nowrap; }
+.p4 .caps span::before { content: ""; display: inline-block; width: 3mm; height: .5mm; background: var(--brand); vertical-align: middle; margin-right: 1.6mm; }
+
+.p4 .creds { left: 14mm; top: 174mm; width: 182mm; display: grid; grid-template-columns: 52mm 1fr 1fr; column-gap: 0; }
+.p4 .creds .label { padding-right: 6mm; }
+.p4 .creds .label .display { font-size: 11.5pt; margin-top: 2.6mm; }
+.p4 .creds .label p { margin-top: 2mm; font-size: 6.8pt; line-height: 1.4; color: #6E7C86; }
+.p4 .cred { border-left: 0.25mm solid var(--rule); padding: 0.6mm 0 3.2mm 5mm; }
+.p4 .cred .h { font: 700 5.8pt/1.2 "Archivo", sans-serif; font-stretch: 112%; letter-spacing: .18em; text-transform: uppercase; color: var(--navy); margin-bottom: 1.6mm; }
+.p4 .cred + .cred { }
+.p4 .cred-col { display: flex; flex-direction: column; gap: 3mm; }
+
+.p4 .contact { left: 0; top: 0; width: 210mm; height: 297mm; }
+.p4 .cta { left: 14mm; top: 230mm; width: 92mm; }
+.p4 .cta .display { font-size: 25pt; line-height: .95; color: var(--white); margin-top: 3mm; text-transform: none; letter-spacing: -0.01em; }
+.p4 .cta .co { margin-top: 3.6mm; font: 700 6.4pt/1.3 "Archivo", sans-serif; font-stretch: 112%; letter-spacing: .22em; text-transform: uppercase; color: var(--steel); }
+.p4 .details { left: 14mm; top: 264mm; width: 112mm; display: grid; grid-template-columns: 1fr 1fr; column-gap: 6mm; row-gap: 2.8mm; }
+.p4 .details .h { font: 700 5.4pt/1 "Archivo", sans-serif; font-stretch: 112%; letter-spacing: .2em; text-transform: uppercase; color: var(--steel); margin-bottom: 1.1mm; }
+.p4 .details .v { font: 600 8pt/1.25 "Inter", sans-serif; color: var(--white); }
+.p4 .tile { left: 134mm; top: 211mm; width: 62mm; height: 68mm; background: var(--white); padding: 5mm 6mm; }
+.p4 .tile .logo { position: relative; width: 50mm; height: 31mm; justify-content: center; }
+.p4 .tile .logo img { object-position: center; }
+.p4 .tile .qr-row { position: absolute; left: 6mm; right: 6mm; bottom: 5mm; display: flex; gap: 3.4mm; align-items: flex-end;
+  border-top: 0.25mm solid var(--grey); padding-top: 3.6mm; }
+.p4 .tile .qr { width: 23mm; height: 23mm; flex: none; }
+.p4 .tile .qr svg { width: 100%; height: 100%; display: block; }
+.p4 .tile .scan { font: 700 5.4pt/1.35 "Archivo", sans-serif; font-stretch: 112%; letter-spacing: .16em; text-transform: uppercase; color: var(--navy); padding-bottom: .4mm; }
+.p4 .tile .scan span { display: block; margin-top: 1.4mm; font: 600 6.2pt/1.3 "Inter", sans-serif; letter-spacing: 0; text-transform: none; color: var(--brand); }
+
+.p3 .who { list-style: none; margin-top: 7mm; display: grid; grid-template-columns: 1fr 1fr; column-gap: 5mm; row-gap: 0; width: 84mm; }
+.p3 .who li { font: 700 5.8pt/1.2 "Archivo", sans-serif; font-stretch: 112%; letter-spacing: .14em; text-transform: uppercase; color: var(--white);
+  padding: 2.2mm 0 2.2mm 4mm; border-top: 0.25mm solid rgba(209,217,220,.22); position: relative; }
+.p3 .who li::before { content: ""; position: absolute; left: 0; top: 2.9mm; width: 1.6mm; height: 1.6mm; background: var(--steel); transform: skewX(-14deg); }
+
+.p3 .ben-head .logo.mono { position: relative; width: 9mm; height: 9mm; margin-bottom: 1.6mm; justify-content: flex-end; }
+.p3 .ben-head .logo.mono img { object-position: right center; }
+
+/* p4 — navy services shard in the collage band */
+.p4 .svc-shard { height: 56mm; background: var(--navy); padding: 6.4mm 0 0 20mm;
+  clip-path: polygon(10mm 0, 100% 0, calc(100% - 10mm) 100%, 0 100%); }
+.p4 .svc-shard ul { list-style: none; margin-top: 3.4mm; }
+.p4 .svc-shard li { font: 700 6.6pt/1 "Archivo", sans-serif; font-stretch: 110%; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--white); padding: 1.5mm 0; border-top: 0.25mm solid rgba(209,217,220,.18); width: 33mm; font-size: 6.2pt; }
+.p4 .svc-shard li:first-child { border-top-color: var(--steel); }
+
+.p2 .p2-folio { right: 66mm; }

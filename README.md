@@ -62,9 +62,20 @@ To fine-tune a crop (for example, to keep faces in frame), edit `pos` / `zoom` f
 
 All placeholders use dashed outlines, so they can't be mistaken for final content.
 
-## Design notes
+## Design notes (v2)
 
-- **Palette:** brand `#2C526C`, deep navy `#1B2B38`, warm off-white `#F2F0EA`, soft grey `#D1D9DC`. Supporting shades are ink `#121D26` (depth layers) and steel `#6F93AA` (accents on navy).
-- **Type:** Archivo variable (expanded width, heavy weights) for headings; Inter for body copy. Both are SIL Open Font License and embedded in `src/fonts/`.
-- **Geometry:** a single diagonal language runs through the document: angled photo masks, parallelogram insets with off-white keylines, brand "blades" along cut edges, chevron workflow, and a skewed four-shard collage.
-- **Emphasis:** maintenance gets the visual weight, with solar supporting. "General Electrical Maintenance" is the highlighted service on page 2, and page 3 centres on day-to-day maintenance.
+v2 is a redesign driven by a measured design teardown against the supplied company profile template (see `teardown/`).
+
+- **Grid:** 12 columns, 16 mm margins, 4 mm gutters.
+- **Running header:** the same strip on pages 2 to 4. The headline sits in a fixed slot, 26 pt, 25 mm from the top.
+- **Type:** seven sizes (34, 26, 12, 10, 8.6, 7.4 and 6.2 pt) and four weights. Archivo variable for headings, Inter for body copy (SIL OFL, embedded in `src/fonts/`).
+- **Colour:** seven text roles and two hairlines. The palette is unchanged: brand `#2C526C`, navy `#1B2B38`, off-white `#F2F0EA`, with steel `#8FB0C4` for labels on navy.
+- **One per page:** each interior page has one solid block and one angled photo edge. The cover keeps a single diagonal and a single brand band.
+- **Photos:** graded as one muted series, at about 60% saturation with a navy cast in the shadows (`scripts/prepare-photos.py`, output in `assets/photos/muted/`).
+- **Logo:** the supplied white logo sits on the cover photo and the contact block. The blue logo and monogram sit on paper.
+
+## Design teardown
+
+- **Interactive page:** `teardown/index.html`. Open it in a browser, and press B to flip every demo between v1 and v2.
+- **Measurements:** `teardown/data/*.json`, from the teardown probe (`teardown/tools/measure.js`, run by `measure-doc.mjs`) and from `teardown/tools/pixel-metrics.py`.
+- **v1:** kept for comparison as `src/index-v1.html`, `src/styles-v1.css` and `src/assets-map-v1.js`, with page images in `teardown/before/`.

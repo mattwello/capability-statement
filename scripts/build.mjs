@@ -53,7 +53,10 @@ await page.emulateMedia({ media: "print" });
 const qa = await page.evaluate(() => {
   const mm = 96 / 25.4;
   const out = [];
-  const textSel = ".display, p, .h-item, .kicker, .tbc, .v, .h, .t, .d, .n, .no, .title, .place, .edition, .base, .folio, .scan, .co, .k, .r, .note, .caps span, .ph-label";
+  // every text role in v1 and v2 of the layout
+  const textSel = ".display, p, .label, .h3, .item, .lead, .small, .caption, .runhead span, .who li, .facts span, .h-item, .kicker, .tbc, .v, .h, .t, .d, .n, .no, .title, .place, .edition, .base, .folio, .scan, .co, .k, .r, .note, .caps span, .ph-label";
+  // opaque blocks text must not run underneath: photos plus anything marked .block
+  const blockSel = ".photo, .block";
   document.querySelectorAll(".page").forEach((pg, i) => {
     const P = pg.getBoundingClientRect();
     const els = [...pg.querySelectorAll(textSel)].filter((e) => e.getClientRects().length);
@@ -74,6 +77,18 @@ const qa = await page.evaluate(() => {
       if (A.e.classList.contains("ph-label") || C.e.classList.contains("ph-label")) continue;
       const ix = Math.min(A.x1, C.x1) - Math.max(A.x0, C.x0), iy = Math.min(A.y1, C.y1) - Math.max(A.y0, C.y0);
       if (ix > 0.3 && iy > 0.3) out.push(`p${i + 1}: text overlap "${A.e.textContent.trim().slice(0, 24)}" × "${C.e.textContent.trim().slice(0, 24)}"`);
+    }
+    // text running under a photo or solid block it does not belong to
+    const blocks = [...pg.querySelectorAll(blockSel)].map((e) => {
+      const r = e.getBoundingClientRect();
+      return { e, x0: (r.left - P.left) / mm, y0: (r.top - P.top) / mm, x1: (r.right - P.left) / mm, y1: (r.bottom - P.top) / mm };
+    });
+    for (const t of boxes) {
+      if (t.e.closest(".photo, .block, [data-over]")) continue;
+      for (const k of blocks) {
+        const ix = Math.min(t.x1, k.x1) - Math.max(t.x0, k.x0), iy = Math.min(t.y1, k.y1) - Math.max(t.y0, k.y0);
+        if (ix > 0.3 && iy > 0.3) out.push(`p${i + 1}: text "${t.e.textContent.trim().slice(0, 28)}" runs under ${k.e.className.split(" ").slice(0, 3).join(".")}`);
+      }
     }
   });
   return { issues: out, missing: window.__WCE_MISSING };

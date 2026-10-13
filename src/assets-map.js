@@ -1,40 +1,32 @@
 /*
- * WESTCOAST ENERGY — ASSET MAP
+ * WESTCOAST ENERGY — ASSET MAP (v2)
  * ------------------------------------------------------------------
- * The single place where photography and the logo are assigned to the
- * layout. Paths are relative to /src/index.html.
- *
- *   src   : path to the ORIGINAL file (null = clearly-marked placeholder)
- *   pos   : crop focus, CSS object-position ("50% 30%" = centre, upper third)
- *   zoom  : optional extra scale (1 = fit to frame) for tighter crops
- *
- * Never point "logo" at a redrawn or approximated logo — original files only.
+ * Assigns the ORIGINAL photos and logo files to the layout.
+ *   src  : path to the prepared photo (scripts/prepare-photos.py)
+ *   pos  : crop focus, CSS object-position
+ *   zoom : optional extra scale for tighter crops
+ * v1 of the document keeps its own map in assets-map-v1.js.
  */
 window.WCE_ASSETS = {
   logo: {
-    // ORIGINAL artwork with only the flat background removed (scripts/prepare-logos.py).
-    // Placed on white / off-white surfaces only.
+    // ORIGINAL artwork; only flat backgrounds removed or trimmed (scripts/prepare-logos.py)
     lockup:   "../assets/logo/westcoast-lockup-electrical-solar_cream_transparent.png",
     monogram: "../assets/logo/westcoast-monogram_white_transparent.png",
+    reversed: "../assets/logo/westcoast-lockup-electrical-solar_reversed-white_trimmed.png", // on navy / photo
   },
-
   photos: {
-    // PAGE 1 — COVER
-    "cover-hero":       { src: "../assets/photos/graded/two-storey-exterior-solar.jpg", pos: "50% 4%", zoom: 1.16 }, // completed residential property
-    "cover-inset":      { src: "../assets/photos/graded/ceiling-downlight-cutout.jpg", pos: "52% 58%", zoom: 1.45 },             // downlight cut-out, on the tools
-
-    // PAGE 2 — ABOUT & CAPABILITIES
-    "about-founders":   { src: "../assets/photos/graded/founders-matthew-mark-rooftop-solar.jpg", pos: "66% 40%", zoom: 1.24 },
-    "about-work":       { src: "../assets/photos/graded/power-point-testing.jpg", pos: "58% 50%" },                  // power point testing, occupied home
-
-    // PAGE 3 — PROPERTY MANAGEMENT PARTNERSHIPS
-    "pm-hero":          { src: "../assets/photos/graded/onsite-plans-review.jpg", pos: "60% 40%" },                  // reviewing plans on-site
-    "pm-onsite":        { src: "../assets/photos/graded/meter-box-testing.jpg", pos: "55% 35%", zoom: 1.3 },          // meter box testing
-
-    // PAGE 4 — OUR WORK & CONTACT
-    "work-kitchen":     { src: "../assets/photos/graded/kitchen-pendant-lighting.jpg", pos: "45% 38%" },             // completed kitchen lighting
-    "work-reno":        { src: "../assets/photos/graded/wall-chasing-rewire.jpg", pos: "35% 45%" },                  // renovation rewiring
-    "work-residential": { src: "../assets/photos/graded/aerial-two-storey-solar.jpg", pos: "54% 50%" },              // aerial, residential solar
-    "work-solar":       { src: "../assets/photos/graded/rooftop-solar-array.jpg", pos: "45% 62%" },                  // completed rooftop array
+    // PAGE 1
+    "cover-hero":       { src: "../assets/photos/muted/two-storey-exterior-solar.jpg", pos: "50% 4%", zoom: 1.16 },
+    // PAGE 2
+    "about-founders":   { src: "../assets/photos/muted/founders-matthew-mark-rooftop-solar.jpg", pos: "62% 30%" },
+    "about-work":       { src: "../assets/photos/muted/power-point-testing.jpg", pos: "60% 50%" },
+    // PAGE 3
+    "pm-hero":          { src: "../assets/photos/muted/meter-box-testing.jpg", pos: "55% 40%" },
+    // PAGE 4
+    "work-kitchen":     { src: "../assets/photos/muted/kitchen-pendant-lighting.jpg", pos: "45% 40%" },
+    "work-light":       { src: "../assets/photos/muted/ceiling-downlight-cutout.jpg", pos: "50% 52%" },
+    "work-reno":        { src: "../assets/photos/muted/wall-chasing-rewire.jpg", pos: "45% 45%" },
+    "work-residential": { src: "../assets/photos/muted/aerial-two-storey-solar.jpg", pos: "54% 50%" },
+    "work-solar":       { src: "../assets/photos/muted/rooftop-solar-array.jpg", pos: "45% 62%" },
   },
 };

@@ -14,8 +14,20 @@ from PIL import Image, ImageEnhance, ImageOps
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "assets/photos/originals"
 OUT = {"graded": (None, 92), "graded-web": (1400, 82)}
+# v2 "muted" grade: lower saturation and a cool navy cast in the shadows, so a
+# mixed set of site photos reads as one series (see teardown: colourfulness).
+MUTED = {"muted": (None, 92), "muted-web": (1400, 82)}
+NAVY = np.array([27, 43, 56], float)
 
-for d in OUT:
+def mute(im):
+    im = ImageEnhance.Color(im).enhance(0.62)
+    im = ImageEnhance.Contrast(im).enhance(1.06)
+    a = np.asarray(im, float)
+    lum = (a @ [0.2126, 0.7152, 0.0722]) / 255
+    w = (0.16 * (1 - lum) ** 2)[..., None]
+    return Image.fromarray(np.clip(a * (1 - w) + NAVY * w, 0, 255).astype(np.uint8))
+
+for d in list(OUT) + list(MUTED):
     (ROOT / "assets/photos" / d).mkdir(parents=True, exist_ok=True)
 
 for f in sorted(SRC.glob("*.jp*g")) + sorted(SRC.glob("*.png")):
@@ -27,6 +39,12 @@ for f in sorted(SRC.glob("*.jp*g")) + sorted(SRC.glob("*.png")):
     im = ImageEnhance.Brightness(im).enhance(1.01)
     for d, (max_px, q) in OUT.items():
         out = im.copy()
+        if max_px:
+            out.thumbnail((max_px, max_px), Image.LANCZOS)
+        out.save(ROOT / "assets/photos" / d / (f.stem + ".jpg"), quality=q, optimize=True, progressive=True)
+    m = mute(im)
+    for d, (max_px, q) in MUTED.items():
+        out = m.copy()
         if max_px:
             out.thumbnail((max_px, max_px), Image.LANCZOS)
         out.save(ROOT / "assets/photos" / d / (f.stem + ".jpg"), quality=q, optimize=True, progressive=True)
