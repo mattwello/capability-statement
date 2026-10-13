@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en-AU"><head><meta charset="utf-8"><title>Printer colour test</title>
+<style>
+@font-face { font-family: "Inter"; src: url("fonts/inter-latin-wght-normal.woff2"); font-weight: 100 900; }
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { font: 400 9pt/1.4 "Inter", sans-serif; color: #222; }
+.page { width: 210mm; height: 297mm; padding: 14mm 15mm; }
+h1 { font-size: 16pt; font-weight: 700; }
+h2 { font-size: 10pt; font-weight: 700; margin: 7mm 0 2.5mm; }
+.note { color: #555; font-size: 8.4pt; margin-top: 1.5mm; }
+.row { display: flex; gap: 3mm; }
+.sw { flex: 1; }
+.sw i { display: block; height: 18mm; border: .2mm solid #bbb; }
+.sw b { display: block; font-size: 7.6pt; margin-top: 1mm; }
+.sw span { display: block; font-size: 7pt; color: #666; }
+.ramp { display: flex; height: 14mm; border: .2mm solid #bbb; }
+.ramp i { flex: 1; }
+.lines { height: 16mm; border: .2mm solid #bbb; background: repeating-linear-gradient(90deg, #00AEEF 0 .3mm, #fff .3mm 1.2mm); }
+table { width: 100%; border-collapse: collapse; margin-top: 2mm; font-size: 8.4pt; }
+td { padding: 1.6mm 2mm; border-bottom: .2mm solid #ddd; vertical-align: top; }
+td:first-child { font-weight: 700; width: 45mm; }
+</style></head><body><div class="page">
+<h1>Westcoast Energy · printer colour test</h1>
+<p class="note">Print at 100% on the paper you use for the brochure, with quality set to High. Compare against the guide at the bottom.</p>
+
+<h2>1. Ink patches: each should be strong, even and the right colour</h2>
+<div class="row">
+  <div class="sw"><i style="background:#00AEEF"></i><b>Cyan</b><span>bright sky blue</span></div>
+  <div class="sw"><i style="background:#EC008C"></i><b>Magenta</b><span>hot pink</span></div>
+  <div class="sw"><i style="background:#FFF200"></i><b>Yellow</b><span>lemon</span></div>
+  <div class="sw"><i style="background:#000"></i><b>Black</b><span>solid, no streaks</span></div>
+  <div class="sw"><i style="background:#2E3192"></i><b>Blue (C+M)</b><span>violet blue</span></div>
+  <div class="sw"><i style="background:#00A651"></i><b>Green (C+Y)</b><span>leaf green</span></div>
+  <div class="sw"><i style="background:#ED1C24"></i><b>Red (M+Y)</b><span>red</span></div>
+</div>
+
+<h2>2. Neutral grey ramp: every step should look grey, with no yellow, brown, pink or green tint</h2>
+<div class="ramp">
+  <i style="background:#f2f2f2"></i><i style="background:#e0e0e0"></i><i style="background:#cccccc"></i><i style="background:#b3b3b3"></i><i style="background:#999"></i>
+  <i style="background:#808080"></i><i style="background:#666"></i><i style="background:#4d4d4d"></i><i style="background:#333"></i><i style="background:#1a1a1a"></i>
+</div>
+
+<h2>3. Fine cyan lines: should be continuous, with no gaps or banding</h2>
+<div class="lines"></div>
+
+<h2>4. Westcoast brand colours as used in the brochure</h2>
+<div class="row">
+  <div class="sw"><i style="background:#2C526C"></i><b>Brand blue</b><span>#2C526C · steel blue</span></div>
+  <div class="sw"><i style="background:#1B2B38"></i><b>Deep navy</b><span>#1B2B38 · near black blue</span></div>
+  <div class="sw"><i style="background:#D1D9DC"></i><b>Soft grey</b><span>#D1D9DC · cool, slightly blue</span></div>
+  <div class="sw"><i style="background:#F2F0EA"></i><b>Off-white</b><span>#F2F0EA · warm white</span></div>
+</div>
+
+<h2>What the result means</h2>
+<table>
+  <tr><td>Greys look yellow, tan or brown</td><td>Cyan (and possibly magenta) is low or a nozzle is blocked. This is what your brochure prints show.</td></tr>
+  <tr><td>Greys look pink or red</td><td>Cyan is low.</td></tr>
+  <tr><td>Greys look green</td><td>Magenta is low.</td></tr>
+  <tr><td>Greys look blue or purple</td><td>Yellow is low.</td></tr>
+  <tr><td>A patch is faint, streaky or missing</td><td>Run the printer's head cleaning, then a nozzle check. Replace the cartridge if it does not recover after two cleans.</td></tr>
+  <tr><td>Everything looks right here but the brochure still looks off</td><td>Check the print settings: paper type should match your paper, quality High, and any "ink saver" or "draft" mode switched off.</td></tr>
+</table>
+</div></body></html>
