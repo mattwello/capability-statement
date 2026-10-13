@@ -27,7 +27,29 @@ def mute(im):
     w = (0.16 * (1 - lum) ** 2)[..., None]
     return Image.fromarray(np.clip(a * (1 - w) + NAVY * w, 0, 255).astype(np.uint8))
 
-for d in list(OUT) + list(MUTED):
+# v4 alternate style: brand duotone (navy shadows -> soft brand highlights) and cool greyscale.
+DUO = {"duo": (None, 90), "duo-web": (1400, 80)}
+MONO = {"mono": (None, 90), "mono-web": (1400, 80)}
+DUO_DARK, DUO_MID, DUO_LIGHT = np.array([18, 30, 40.]), np.array([44, 82, 108.]), np.array([196, 214, 224.])
+
+def duotone(im):
+    l = np.asarray(ImageOps.autocontrast(im.convert("L"), cutoff=1), float)[..., None] / 255
+    lo = DUO_DARK + (DUO_MID - DUO_DARK) * np.clip(l / .55, 0, 1)
+    hi = DUO_MID + (DUO_LIGHT - DUO_MID) * np.clip((l - .55) / .45, 0, 1)
+    return Image.fromarray(np.where(l < .55, lo, hi).astype(np.uint8))
+
+def mono(im):
+    g = np.asarray(ImageOps.autocontrast(im.convert("L"), cutoff=1), float)[..., None]
+    return Image.fromarray(np.clip(g * [0.97, 1.0, 1.03], 0, 255).astype(np.uint8))
+
+def save_set(img, sets, stem):
+    for d, (max_px, q) in sets.items():
+        out = img.copy()
+        if max_px:
+            out.thumbnail((max_px, max_px), Image.LANCZOS)
+        out.save(ROOT / "assets/photos" / d / (stem + ".jpg"), quality=q, optimize=True, progressive=True)
+
+for d in list(OUT) + list(MUTED) + list(DUO) + list(MONO):
     (ROOT / "assets/photos" / d).mkdir(parents=True, exist_ok=True)
 
 for f in sorted(SRC.glob("*.jp*g")) + sorted(SRC.glob("*.png")):
@@ -48,4 +70,6 @@ for f in sorted(SRC.glob("*.jp*g")) + sorted(SRC.glob("*.png")):
         if max_px:
             out.thumbnail((max_px, max_px), Image.LANCZOS)
         out.save(ROOT / "assets/photos" / d / (f.stem + ".jpg"), quality=q, optimize=True, progressive=True)
+    save_set(duotone(im), DUO, f.stem)
+    save_set(mono(im), MONO, f.stem)
     print(f"{f.name}: {im.size}")

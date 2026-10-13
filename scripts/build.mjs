@@ -10,11 +10,15 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SRC = path.join(ROOT, "src");
-const OUT = path.join(ROOT, "output");
+// Optional alternate build:  node scripts/build.mjs <page.html in src/> <output subfolder> <file label>
+const [ARG_PAGE, ARG_DIR, ARG_LABEL] = process.argv.slice(2);
+const HTML = ARG_PAGE || "index.html";
+const OUT = ARG_DIR ? path.join(ROOT, "output", ARG_DIR) : path.join(ROOT, "output");
+const LABEL = ARG_LABEL ? `_${ARG_LABEL}` : "";
 const PREV = path.join(OUT, "previews");
 const WEBSITE = "https://www.westcoastenergy.com.au";
-const PDF_NAME = "Westcoast-Energy_Property-Management_Capability-Statement_A4.pdf";
-const PDF_WEB_NAME = "Westcoast-Energy_Property-Management_Capability-Statement_A4_email.pdf";
+const PDF_NAME = `Westcoast-Energy_Property-Management_Capability-Statement${LABEL}_A4.pdf`;
+const PDF_WEB_NAME = `Westcoast-Energy_Property-Management_Capability-Statement${LABEL}_A4_email.pdf`;
 const PAGE_NAMES = ["01-Cover", "02-About-and-Capabilities", "03-Property-Management-Partnerships", "04-Our-Work-and-Contact"];
 const SCALE = 300 / 96; // 300 dpi previews
 
@@ -45,7 +49,7 @@ const warnings = [];
 page.on("console", (m) => { if (m.type() === "error") warnings.push(`console: ${m.text()}`); });
 page.on("requestfailed", (r) => warnings.push(`failed to load: ${r.url()}`));
 
-await page.goto(pathToFileURL(path.join(SRC, "index.html")).href);
+await page.goto(pathToFileURL(path.join(SRC, HTML)).href);
 await page.waitForFunction(() => window.__WCE_READY === true, null, { timeout: 30000 });
 await page.emulateMedia({ media: "print" });
 
@@ -102,7 +106,7 @@ await page.pdf({ path: pdfPath, preferCSSPageSize: true, printBackground: true }
 const pages = await page.$$(".page");
 const pngs = [];
 for (let i = 0; i < pages.length; i++) {
-  const f = path.join(PREV, `Westcoast-Energy_Capability-Statement_Page-${PAGE_NAMES[i]}.png`);
+  const f = path.join(PREV, `Westcoast-Energy_Capability-Statement${LABEL}_Page-${PAGE_NAMES[i]}.png`);
   await pages[i].screenshot({ path: f });
   pngs.push(f);
 }
@@ -111,7 +115,7 @@ for (let i = 0; i < pages.length; i++) {
 const qrShot = await (await page.$("#qr")).screenshot({ omitBackground: false });
 
 // 6b — Email-size PDF (identical layout, lighter photo copies)
-await page.goto(pathToFileURL(path.join(SRC, "index.html")).href + "?web");
+await page.goto(pathToFileURL(path.join(SRC, HTML)).href + "?web");
 await page.waitForFunction(() => window.__WCE_READY === true, null, { timeout: 30000 });
 await page.emulateMedia({ media: "print" });
 const pdfWebPath = path.join(OUT, PDF_WEB_NAME);

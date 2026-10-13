@@ -79,6 +79,22 @@ Earlier versions are kept for comparison:
 - **v2:** `src/index-v2.html`, `src/styles-v2.css` and `src/assets-map-v2.js`, with page images in `teardown/before-v2/`.
 - **v1:** `src/index-v1.html`, `src/styles-v1.css` and `src/assets-map-v1.js`, with page images in `teardown/before/`.
 
+## Alternate style (v4), for comparison
+
+A trial of the second capability statement template the client supplied, re-coloured to the Westcoast brand:
+
+- photos tinted in the brand colour (duotone), with one large rounded corner
+- giant cropped words bleeding off the cover and back page
+- condensed headings with coloured subtitles, triangle bullets and soft grey panels
+
+It does not replace the main PDF.
+
+| Part | Where |
+|---|---|
+| Source | `src/index-v4.html`, `src/styles-v4.css`, `src/assets-map-v4.js` |
+| Output | `output/alt-style-v4/` |
+| Rebuild | `node scripts/build.mjs index-v4.html alt-style-v4 Alt-Style` |
+
 ## Design teardown
 
 - **Interactive page:** `teardown/index.html`. Open it in a browser, and press B to flip every demo between v1 and v2. `teardown/Westcoast-Energy_Design-Teardown_standalone.html` is the same page as a single file you can send.

@@ -1,0 +1,193 @@
+/* ==================================================================
+   WESTCOAST ENERGY — CAPABILITY STATEMENT · v4 ALTERNATE STYLE
+   Modelled on the supplied capability statement template (red sample),
+   re-coloured to the Westcoast brand. A4, mm and pt.
+
+   Style traits taken from the reference:
+   · Photos tinted in the brand colour, bleeding off the page edge,
+     each with one large rounded corner (14 mm)
+   · Giant cropped word bleeding off the cover and back page
+   · Condensed bold headings with a thin coloured subtitle beneath
+   · Triangle bullets, numbered lists, soft grey panels, dark QR tile
+   ================================================================== */
+
+@font-face {
+  font-family: "Archivo";
+  src: url("fonts/archivo-latin-wdth-normal.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+}
+
+:root {
+  --brand: #2C526C;
+  --navy: #1B2B38;
+  --paper: #F2F0EA;
+  --grey: #D1D9DC;     /* soft grey panels */
+  --white: #FFFFFF;
+
+  --t-head: #1B2B38;
+  --t-body: #44515B;
+  --t-mute: #76838C;
+
+  --R: 14mm;           /* the one large corner */
+  --m: 15mm;
+}
+
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  background: #8A949A;
+  font: 400 8.8pt/1.5 "Archivo", sans-serif;
+  font-stretch: 92%;
+  color: var(--t-body);
+  -webkit-font-smoothing: antialiased;
+}
+@media screen { body { padding: 12mm 0; } .page { margin: 0 auto 12mm; box-shadow: 0 2mm 8mm rgba(0,0,0,.35); } }
+@media print { body { background: none; } }
+
+.page { position: relative; width: 210mm; height: 297mm; overflow: hidden; background: var(--white); break-after: page; }
+.page:last-child { break-after: auto; }
+.abs { position: absolute; }
+
+/* ---------- Type ------------------------------------------------- */
+.h { font: 700 17pt/1.02 "Archivo", sans-serif; font-stretch: 78%; color: var(--t-head); letter-spacing: -0.005em; }
+.sub { font: 400 10pt/1.2 "Archivo", sans-serif; font-stretch: 80%; color: var(--brand); margin-top: .8mm; }
+.dark .h, .h.light { color: var(--white); }
+.dark .sub { color: var(--grey); }
+.lead { font: 500 10pt/1.42 "Archivo", sans-serif; font-stretch: 88%; color: var(--t-head); }
+p + p { margin-top: 2mm; }
+.small { font-size: 7.8pt; line-height: 1.45; }
+.label { font: 700 6.4pt/1.2 "Archivo", sans-serif; font-stretch: 100%; letter-spacing: .16em; text-transform: uppercase; color: var(--t-head); }
+.dark { color: var(--grey); }
+
+/* Giant cropped word */
+.giant { position: absolute; font: 800 74pt/0.8 "Archivo", sans-serif; font-stretch: 72%; text-transform: uppercase;
+  letter-spacing: -0.01em; color: var(--navy); opacity: .62; white-space: nowrap; }
+
+/* Triangle bullet list */
+.tri { list-style: none; }
+.tri li { position: relative; padding-left: 4.4mm; }
+.tri li + li { margin-top: 2.6mm; }
+.tri li::before { content: ""; position: absolute; left: 0; top: 1.1mm; border-left: 1.7mm solid var(--brand); border-top: 1.1mm solid transparent; border-bottom: 1.1mm solid transparent; }
+.dark .tri li::before, .tri.light li::before { border-left-color: var(--white); }
+.tri b { display: block; font: 700 8.6pt/1.25 "Archivo", sans-serif; font-stretch: 84%; color: var(--t-head); }
+.dark .tri b { color: var(--white); }
+
+/* Circled arrow bullet */
+.cb { display: grid; grid-template-columns: 6mm 1fr; column-gap: 2.6mm; align-items: start; }
+.cb .dot { width: 6mm; height: 6mm; border-radius: 50%; background: var(--brand); position: relative; }
+.cb .dot::after { content: ""; position: absolute; left: 2.4mm; top: 1.9mm; border-left: 1.6mm solid var(--white); border-top: 1.1mm solid transparent; border-bottom: 1.1mm solid transparent; }
+.cb b { display: block; font: 700 8.6pt/1.2 "Archivo", sans-serif; font-stretch: 84%; color: var(--t-head); margin-bottom: .6mm; }
+
+/* Corner triangle mark */
+.mark { position: absolute; width: 3.6mm; height: 3.6mm; background: var(--white); clip-path: polygon(0 0, 100% 100%, 0 100%); }
+
+/* ---------- Photos ----------------------------------------------- */
+.photo { position: absolute; overflow: hidden; background: var(--brand); }
+.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.photo.is-empty .ph-label { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); color: #fff; font: 600 6pt/1.3 "Archivo"; border: .25mm dashed #fff; padding: 1.5mm 2mm; }
+.photo.is-empty .ph-label b { display: block; }
+.rbl { border-bottom-left-radius: var(--R); }
+.rbr { border-bottom-right-radius: var(--R); }
+.rtl { border-top-left-radius: var(--R); }
+.rtr { border-top-right-radius: var(--R); }
+.r-all { border-radius: 6mm; }
+
+.panel { position: absolute; background: var(--grey); }
+.block { position: absolute; background: var(--brand); color: var(--white); }
+
+/* ---------- Logo ------------------------------------------------- */
+.logo { position: absolute; display: flex; align-items: center; }
+.logo img { max-width: 100%; max-height: 100%; object-fit: contain; object-position: left center; }
+
+.tbc { display: inline-block; font: 600 7.4pt/1.3 "Archivo"; font-stretch: 90%; color: var(--brand); border: .25mm dashed rgba(44,82,108,.6); padding: .5mm 1.4mm; }
+
+.folio { position: absolute; left: var(--m); right: var(--m); bottom: 8mm; display: flex; justify-content: space-between;
+  font: 600 6.2pt/1 "Archivo", sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--t-mute); }
+
+/* =================================================================
+   PAGE 1 — COVER
+   ================================================================= */
+.p1 .photo-main { left: 0; top: 0; width: 148mm; height: 178mm; }
+.p1 .photo-side { left: 148mm; top: 0; width: 62mm; height: 96mm; }
+.p1 .giant { left: -3mm; top: 9mm; font-size: 70pt; }
+.p1 .logo-tab { left: 148mm; top: 96mm; width: 62mm; height: 82mm; background: var(--white); border-top-left-radius: var(--R); }
+.p1 .logo-tab .logo { left: 10mm; top: 14mm; width: 42mm; height: 36mm; }
+.p1 .title { left: var(--m); top: 50mm; width: 125mm; }
+.p1 .title .h { font-size: 34pt; line-height: .95; color: var(--white); text-transform: uppercase; }
+.p1 .title .sub { font-size: 21pt; line-height: 1.05; color: var(--white); margin-top: 1.4mm; }
+.p1 .strap { left: 0; top: 178mm; width: 148mm; height: 34mm; padding: 9mm 14mm 0 var(--m); border-bottom-right-radius: var(--R); }
+.p1 .strap .tri li { font: 500 10.5pt/1.35 "Archivo", sans-serif; font-stretch: 90%; color: var(--white); }
+.p1 .meta { left: var(--m); top: 236mm; width: 70mm; }
+.p1 .meta .row { border-bottom: .25mm solid var(--grey); padding: 2mm 0 2.2mm; }
+.p1 .meta .row .v { font-size: 8.4pt; color: var(--t-head); margin-top: .6mm; }
+.p1 .corner { left: 118mm; top: 226mm; width: 92mm; height: 71mm; border-top-left-radius: var(--R); }
+.p1 .corner .mark { left: 10mm; top: 9mm; background: var(--brand); }
+.p1 .corner .label { position: absolute; left: 10mm; bottom: 12mm; }
+
+/* =================================================================
+   PAGE 2 — ABOUT & CAPABILITIES
+   ================================================================= */
+.p2 .logo { left: var(--m); top: 13mm; width: 22mm; height: 9mm; }
+.p2 .svc { left: var(--m); top: 30mm; width: 84mm; }
+.p2 .svc .tri { margin-top: 5mm; }
+.p2 .photo-f { left: 108mm; top: 0; width: 102mm; height: 140mm; }
+.p2 .quote { left: 116mm; top: 98mm; width: 80mm; }
+.p2 .quote .q { font: 700 11pt/1.25 "Archivo", sans-serif; font-stretch: 84%; color: var(--white); }
+.p2 .quote .who { margin-top: 2mm; font: 500 8pt/1.3 "Archivo", sans-serif; font-stretch: 92%; color: var(--grey); }
+.p2 .photo-f .fade { position: absolute; left: 0; right: 0; bottom: 0; height: 62mm; background: linear-gradient(180deg, rgba(18,30,40,0), rgba(18,30,40,.88) 60%); }
+.p2 .photo-f .mark { left: 7mm; bottom: 6mm; top: auto; }
+.p2 .about { left: var(--m); top: 154mm; width: 86mm; }
+.p2 .about .body { margin-top: 4.4mm; }
+.p2 .why { left: 109mm; top: 154mm; width: 86mm; }
+.p2 .why .tri { margin-top: 4.4mm; }
+
+/* =================================================================
+   PAGE 3 — PROPERTY MANAGEMENT PARTNERSHIPS
+   ================================================================= */
+.p3 .photo-h { left: 0; top: 0; width: 120mm; height: 132mm; }
+.p3 .panel-r { left: 98mm; top: 0; width: 112mm; height: 132mm; border-bottom-left-radius: var(--R); padding: 16mm 15mm 0 14mm; }
+.p3 .flow { margin-top: 6mm; }
+.p3 .flow .row { display: grid; grid-template-columns: 4mm 12mm 1fr; align-items: baseline; padding: 2.4mm 0; }
+.p3 .flow .row + .row { border-top: .25mm solid rgba(27,43,56,.12); }
+.p3 .flow .row .ar { width: 0; height: 0; border-left: 1.5mm solid var(--brand); border-top: 1mm solid transparent; border-bottom: 1mm solid transparent; transform: translateY(-.6mm); }
+.p3 .flow .n { font: 700 15pt/1 "Archivo", sans-serif; font-stretch: 80%; color: var(--t-head); }
+.p3 .flow b { display: block; font: 700 8.6pt/1.2 "Archivo", sans-serif; font-stretch: 84%; color: var(--t-head); }
+.p3 .flow .small { color: var(--t-body); }
+.p3 .intro { left: var(--m); top: 142mm; width: 180mm; display: grid; grid-template-columns: 1fr 1fr; column-gap: 9mm; }
+.p3 .intro .who { margin-top: 2.6mm; display: flex; flex-wrap: wrap; gap: 1mm 4mm; list-style: none; }
+.p3 .intro .who li { font: 700 6.4pt/1.6 "Archivo"; letter-spacing: .12em; text-transform: uppercase; color: var(--brand); }
+.p3 .comp { left: var(--m); top: 179mm; width: 180mm; }
+.p3 .comp .grid { margin-top: 5mm; display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 6mm; row-gap: 4.4mm; }
+.p3 .tiles { left: var(--m); top: 236mm; width: 180mm; height: 46mm; display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+.p3 .tiles .photo { position: relative; border-radius: 6mm; }
+
+/* =================================================================
+   PAGE 4 — OUR WORK & CONTACT
+   ================================================================= */
+.p4 .photo-t { left: 140mm; top: 0; width: 70mm; height: 170mm; border-bottom-left-radius: var(--R); }
+.p4 .giant { left: 143mm; top: 10mm; font-size: 70pt; opacity: .55; }
+.p4 .photo-t .mark { right: 8mm; bottom: 8mm; left: auto; top: auto; }
+.p4 .logo { left: var(--m); top: 13mm; width: 22mm; height: 9mm; }
+.p4 .intro { left: var(--m); top: 30mm; width: 112mm; }
+.p4 .intro .lead { margin-top: 4.4mm; }
+.p4 .work { left: var(--m); top: 76mm; width: 112mm; }
+.p4 .work ol { list-style: none; margin-top: 4mm; }
+.p4 .work li { display: grid; grid-template-columns: 9mm 1fr; padding: 1.6mm 0; border-bottom: .25mm solid #E6E9EA; font-size: 8.4pt; color: var(--t-head); }
+.p4 .work li span { font: 700 9pt/1.3 "Archivo"; font-stretch: 84%; color: var(--brand); }
+.p4 .creds { left: var(--m); top: 140mm; width: 120mm; }
+.p4 .creds .row { margin-top: 5mm; display: grid; grid-template-columns: repeat(4, 1fr); column-gap: 3mm; }
+.p4 .creds .c { text-align: center; }
+.p4 .creds .c svg { width: 6.6mm; height: 6.6mm; stroke: var(--brand); fill: none; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; display: block; margin: 0 auto 1.6mm; }
+.p4 .creds .c b { display: block; font: 700 7.4pt/1.2 "Archivo"; font-stretch: 84%; color: var(--t-head); margin-bottom: 1.2mm; }
+.p4 .creds .tbc { font-size: 6.4pt; }
+.p4 .contact { left: 0; top: 196mm; width: 210mm; height: 101mm; border-top-right-radius: var(--R); padding: 14mm var(--m) 0; }
+.p4 .contact .h { font-size: 22pt; }
+.p4 .contact .sub { font-size: 12pt; }
+.p4 .details { margin-top: 6mm; display: grid; grid-template-columns: 26mm 1fr; row-gap: 1.8mm; width: 120mm; font-size: 8.4pt; color: var(--t-head); }
+.p4 .details .k { font: 700 6.4pt/1.9 "Archivo"; letter-spacing: .14em; text-transform: uppercase; color: var(--t-mute); }
+.p4 .qr-tile { right: var(--m); top: 228mm; width: 44mm; height: 50mm; background: var(--navy); border-radius: 5mm; padding: 5mm; text-align: center; }
+.p4 .qr-tile .qr { width: 32mm; height: 32mm; margin: 0 auto; background: var(--white); border-radius: 2mm; padding: 2mm; }
+.p4 .qr-tile .qr img { width: 100%; height: 100%; display: block; }
+.p4 .qr-tile .label { color: var(--white); margin-top: 3.2mm; }
