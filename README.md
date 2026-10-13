@@ -52,10 +52,10 @@ To fine-tune a crop (for example, to keep faces in frame), edit `pos` / `zoom` f
 
 - [x] **Original logo files**: supplied and placed (cover, contact tile, page 3 monogram). An SVG/vector master would still be best for commercial print.
 - [x] **Photography:** 10 of the supplied photos placed, each used once. No placeholders, stock or generated imagery remain.
-- [ ] **Phone number**: `[CONFIRM PHONE NUMBER]`, page 4
-- [ ] **Email address**: `[CONFIRM EMAIL ADDRESS]`, page 4
-- [ ] **Electrical contractor licence number** (EC number), page 4
-- [ ] **ABN**, page 4
+- [x] **Phone number**: 0429 346 088
+- [x] **Email address**: hello@westcoastenergy.com.au
+- [x] **Electrical contractor licence**: EC 16993
+- [x] **ABN**: 73 687 509 566
 - [ ] **Accreditations**: only those actually held, page 4
 - [ ] **Insurance details**: only as you are happy to publish them, page 4
 - [ ] Sign-off on the four workflow step descriptions on page 3. They were written for this document, so confirm they match how you operate.
