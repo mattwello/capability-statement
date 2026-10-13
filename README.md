@@ -79,6 +79,20 @@ Earlier versions are kept for comparison:
 - **v2:** `src/index-v2.html`, `src/styles-v2.css` and `src/assets-map-v2.js`, with page images in `teardown/before-v2/`.
 - **v1:** `src/index-v1.html`, `src/styles-v1.css` and `src/assets-map-v1.js`, with page images in `teardown/before/`.
 
+## Print versions
+
+The main PDFs are RGB, for screen and email. For printing, use the files in `output/print/`.
+Each is built for both designs.
+
+| File | Use |
+|---|---|
+| `*_PRINT-SHOP_CMYK.pdf` | For a commercial printer: CMYK, A4 trim with 3 mm bleed, crop marks, and TrimBox/BleedBox set. |
+| `*_HOME-PRINT.pdf` | For office and home printers: each page is scaled to 92% on A4 with a white margin, with slightly lighter blues and brighter photos. |
+
+**Colour profile:** the CMYK conversion uses Ghostscript's default profile. If your printer specifies one (often ISO Coated v2 / FOGRA39 in Australia), ask them to convert to it or to supply a proof.
+
+**Rebuild:** `node scripts/build-print.mjs`. This needs `gs` (Ghostscript) and Python `pikepdf`. The print modes live in `scripts/print-modes.js`; the design sources are untouched.
+
 ## Alternate style (v4), for comparison
 
 A trial of the second capability statement template the client supplied, re-coloured to the Westcoast brand:
