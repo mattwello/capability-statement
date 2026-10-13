@@ -118,13 +118,20 @@ p + p { margin-top: 2mm; }
 .p1 .title .h { font-size: 34pt; line-height: .95; color: var(--white); text-transform: uppercase; }
 .p1 .title .sub { font-size: 21pt; line-height: 1.05; color: var(--white); margin-top: 1.4mm; }
 .p1 .strap { left: 0; top: 178mm; width: 148mm; height: 34mm; padding: 9mm 14mm 0 var(--m); border-bottom-right-radius: var(--R); }
-.p1 .strap .tri li { font: 500 10.5pt/1.35 "Archivo", sans-serif; font-stretch: 90%; color: var(--white); }
+.p1 .strap { padding-top: 8mm; }
+.p1 .strap .tri li { font: 600 16pt/1.12 "Archivo", sans-serif; font-stretch: 84%; color: var(--white); padding-left: 6mm; }
+.p1 .strap .tri li::before { top: 2.2mm; border-left-width: 2.6mm; border-top-width: 1.7mm; border-bottom-width: 1.7mm; }
 .p1 .meta { left: var(--m); top: 236mm; width: 70mm; }
 .p1 .meta .row { border-bottom: .25mm solid var(--grey); padding: 2mm 0 2.2mm; }
-.p1 .meta .row .v { font-size: 8.4pt; color: var(--t-head); margin-top: .6mm; }
+.p1 .meta { width: 92mm; }
+.p1 .meta .row { padding: 3mm 0 3.4mm; }
+.p1 .meta .row .label { font-size: 8pt; color: var(--brand); }
+.p1 .meta .row .v { font: 600 13pt/1.2 "Archivo", sans-serif; font-stretch: 88%; color: var(--t-head); margin-top: 1.2mm; }
 .p1 .corner { left: 118mm; top: 226mm; width: 92mm; height: 71mm; border-top-left-radius: var(--R); }
 .p1 .corner .mark { left: 10mm; top: 9mm; background: var(--brand); }
-.p1 .corner .label { position: absolute; left: 10mm; bottom: 12mm; }
+.p1 .corner .label { position: absolute; left: 10mm; bottom: 13mm; font: 700 15pt/1.15 "Archivo", sans-serif; font-stretch: 84%; letter-spacing: .06em; color: var(--t-head); }
+.p1 .corner .label span { display: block; }
+.p1 .corner .label span:nth-child(2) { color: var(--brand); }
 
 /* =================================================================
    PAGE 2 — ABOUT & CAPABILITIES
