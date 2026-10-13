@@ -76,6 +76,6 @@ v2 is a redesign driven by a measured design teardown against the supplied compa
 
 ## Design teardown
 
-- **Interactive page:** `teardown/index.html`. Open it in a browser, and press B to flip every demo between v1 and v2.
+- **Interactive page:** `teardown/index.html`. Open it in a browser, and press B to flip every demo between v1 and v2. `teardown/Westcoast-Energy_Design-Teardown_standalone.html` is the same page as a single file you can send.
 - **Measurements:** `teardown/data/*.json`, from the teardown probe (`teardown/tools/measure.js`, run by `measure-doc.mjs`) and from `teardown/tools/pixel-metrics.py`.
 - **v1:** kept for comparison as `src/index-v1.html`, `src/styles-v1.css` and `src/assets-map-v1.js`, with page images in `teardown/before/`.
