@@ -5,6 +5,7 @@
  *   src  : path to the prepared photo (scripts/prepare-photos.py)
  *   pos  : crop focus, CSS object-position
  *   zoom : optional extra scale for tighter crops
+ *   crop : optional [left, top, right, bottom] fractions of the image to keep
  * v1 of the document keeps its own map in assets-map-v1.js.
  */
 window.WCE_ASSETS = {
@@ -16,7 +17,8 @@ window.WCE_ASSETS = {
   },
   photos: {
     // PAGE 1
-    "cover-hero":       { src: "../assets/photos/muted/two-storey-exterior-solar.jpg", pos: "50% 4%", zoom: 1.16 },
+    "cover-hero":       { src: "../assets/photos/muted/two-storey-exterior-solar.jpg", crop: [0, 0.16, 1, 0.515] }, // ends above the scissor lift
+    "cover-onsite":     { src: "../assets/photos/muted/solar-install-in-progress.jpg", pos: "55% 62%", zoom: 1.5 },
     // PAGE 2
     "about-founders":   { src: "../assets/photos/muted/founders-matthew-mark-rooftop-solar.jpg", pos: "62% 30%" },
     "about-work":       { src: "../assets/photos/muted/power-point-testing.jpg", pos: "60% 50%" },

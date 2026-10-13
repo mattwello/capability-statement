@@ -62,17 +62,22 @@ To fine-tune a crop (for example, to keep faces in frame), edit `pos` / `zoom` f
 
 All placeholders use dashed outlines, so they can't be mistaken for final content.
 
-## Design notes (v2)
+## Design notes (v3, current)
 
-v2 is a redesign driven by a measured design teardown against the supplied company profile template (see `teardown/`).
+v3 softens the design to match westcoastenergy.com.au, using values sampled from a screenshot of the site.
 
-- **Grid:** 12 columns, 16 mm margins, 4 mm gutters.
-- **Running header:** the same strip on pages 2 to 4. The headline sits in a fixed slot, 26 pt, 25 mm from the top.
-- **Type:** seven sizes (34, 26, 12, 10, 8.6, 7.4 and 6.2 pt) and four weights. Archivo variable for headings, Inter for body copy (SIL OFL, embedded in `src/fonts/`).
-- **Colour:** seven text roles and two hairlines. The palette is unchanged: brand `#2C526C`, navy `#1B2B38`, off-white `#F2F0EA`, with steel `#8FB0C4` for labels on navy.
-- **One per page:** each interior page has one solid block and one angled photo edge. The cover keeps a single diagonal and a single brand band.
-- **Photos:** graded as one muted series, at about 60% saturation with a navy cast in the shadows (`scripts/prepare-photos.py`, output in `assets/photos/muted/`).
-- **Logo:** the supplied white logo sits on the cover photo and the contact block. The blue logo and monogram sit on paper.
+- **Page and cards:** white page, `#F5F5F5` cards, 3 to 4 mm rounded corners. No angled cuts.
+- **Headlines:** Inter semibold in sentence case, two tones: `#343345` for the first line, `#83828D` for the second.
+- **Body text:** `#595D7A`.
+- **Labels:** outlined pill tags with a dot for section labels. White pills sit over photos.
+- **Icons:** white circular icon buttons on grey cards. General maintenance gets the one blue button.
+- **Colour blocks:** the workflow and contact blocks are rounded navy cards inside the margins.
+- **Kept from v2:** the brand colours, running header, fixed headline slot, muted photo grade and seven-step type scale.
+
+Earlier versions are kept for comparison:
+
+- **v2:** `src/index-v2.html`, `src/styles-v2.css` and `src/assets-map-v2.js`, with page images in `teardown/before-v2/`.
+- **v1:** `src/index-v1.html`, `src/styles-v1.css` and `src/assets-map-v1.js`, with page images in `teardown/before/`.
 
 ## Design teardown
 

@@ -23,6 +23,11 @@
       img.src = location.search.includes("web") ? cfg.src.replace(/\/(graded|muted)\//, "/$1-web/") : cfg.src;
       img.alt = frame.dataset.label || key;
       img.style.objectPosition = cfg.pos || "50% 50%";
+      // crop: [left, top, right, bottom] as fractions of the image to keep
+      if (cfg.crop) {
+        const [l, t, r, b] = cfg.crop.map((v) => v * 100);
+        img.style.objectViewBox = `inset(${t}% ${100 - r}% ${100 - b}% ${l}%)`;
+      }
       if (cfg.zoom && cfg.zoom !== 1) {
         img.style.transform = `scale(${cfg.zoom})`;
         img.style.transformOrigin = cfg.pos || "50% 50%";

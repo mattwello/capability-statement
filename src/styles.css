@@ -1,21 +1,18 @@
 /* ==================================================================
-   WESTCOAST ENERGY — CAPABILITY STATEMENT · DESIGN SYSTEM v2
+   WESTCOAST ENERGY — CAPABILITY STATEMENT · DESIGN SYSTEM v3 "soft"
    A4 portrait, 210 × 297 mm. Layout in mm, type in pt.
 
-   v2 rules (from the design teardown, see /teardown):
-   · 12-column grid: 16 mm margins, 4 mm gutters, 11.17 mm columns
-   · Seven type sizes, four weights
-   · One navy block and one angled photo per interior page
-   · Same running header, headline size and headline position on pages 2–4
-   · Two hairlines only: one on paper, one on navy
+   v3 matches the softer feel of westcoastenergy.com.au, using values
+   sampled from the site screenshot:
+   · White page, #F5F5F5 cards, ~3% corner radius (3–4 mm here)
+   · Inter semibold headlines in sentence case, two-tone: #343345 then #83828D
+   · Blue-grey body text #595D7A
+   · Outlined pill tags with a dot for section labels
+   · White circular icon buttons on grey cards
+   · No angled cuts; photos and colour blocks are rounded cards inside the margins
+   Keeps v2's grid, running header and fixed headline slot.
    ================================================================== */
 
-@font-face {
-  font-family: "Archivo";
-  src: url("fonts/archivo-latin-wdth-normal.woff2") format("woff2-variations");
-  font-weight: 100 900;
-  font-stretch: 62% 125%;
-}
 @font-face {
   font-family: "Inter";
   src: url("fonts/inter-latin-wght-normal.woff2") format("woff2-variations");
@@ -23,229 +20,210 @@
 }
 
 :root {
-  /* Brand */
+  /* Brand (from the brief and logo) */
   --brand: #2C526C;
   --navy: #1B2B38;
-  --paper: #F2F0EA;
-  --white: #FFFFFF;
-  --grey: #D1D9DC;
 
-  /* Text roles: paper */
-  --t-head: #1B2B38;   /* headings */
-  --t-body: #3A4853;   /* body */
-  --t-mute: #6E7C86;   /* captions, labels */
-  /* Text roles: navy */
+  /* Neutrals (sampled from the website) */
+  --page: #FFFFFF;
+  --card: #F5F5F5;
+  --line: #E4E4E8;     /* pill outlines */
+
+  /* Text roles */
+  --t-head: #343345;   /* headings, first line */
+  --t-second: #83828D; /* headline second line, labels */
+  --t-body: #595D7A;   /* body */
   --d-head: #FFFFFF;
-  --d-body: #B4C3CC;
-  --d-label: #8FB0C4;  /* steel: labels and accent words on navy */
-
-  /* Hairlines: exactly two */
-  --rule: #D3D5CF;                     /* on paper */
-  --rule-d: rgba(255, 255, 255, 0.16); /* on navy  */
+  --d-body: #C9D3DA;
+  --d-second: rgba(255, 255, 255, 0.62);
 
   /* Type scale: seven sizes */
-  --fs-cover: 34pt;
-  --fs-display: 26pt;
+  --fs-cover: 32pt;
+  --fs-display: 24pt;
   --fs-h3: 12pt;
   --fs-lead: 10pt;
   --fs-body: 8.6pt;
-  --fs-small: 7.4pt;
-  --fs-label: 6.2pt;
+  --fs-small: 7.6pt;
+  --fs-label: 6.8pt;
 
-  /* Grid */
-  --m: 16mm;
-  --col: 11.1667mm;
-  --gut: 4mm;
+  /* Radius */
+  --r: 3mm;            /* cards */
+  --r-photo: 4mm;      /* photos */
+
+  --m: 16mm;           /* page margin */
 }
 
 @page { size: A4; margin: 0; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-
 body {
   background: #8A949A;
-  font: 400 var(--fs-body)/1.5 "Inter", sans-serif;
+  font: 400 var(--fs-body)/1.55 "Inter", sans-serif;
   color: var(--t-body);
+  letter-spacing: -0.006em;
   -webkit-font-smoothing: antialiased;
 }
 @media screen { body { padding: 12mm 0; } .page { margin: 0 auto 12mm; box-shadow: 0 2mm 8mm rgba(0,0,0,.35); } }
 @media print { body { background: none; } }
 
-.page {
-  position: relative;
-  width: 210mm;
-  height: 297mm;
-  overflow: hidden;
-  background: var(--paper);
-  break-after: page;
-}
+.page { position: relative; width: 210mm; height: 297mm; overflow: hidden; background: var(--page); break-after: page; }
 .page:last-child { break-after: auto; }
 .abs { position: absolute; }
-svg.shape { position: absolute; inset: 0; width: 210mm; height: 297mm; }
 
 /* ---------- Type roles ------------------------------------------ */
 .display {
-  font: 800 var(--fs-display)/0.98 "Archivo", sans-serif;
-  font-stretch: 106%;
-  text-transform: uppercase;
-  letter-spacing: -0.01em;
+  font: 600 var(--fs-display)/1.1 "Inter", sans-serif;
+  letter-spacing: -0.028em;
   color: var(--t-head);
 }
-.display .accent { color: var(--brand); }
+.display .second { color: var(--t-second); }
 .dark .display { color: var(--d-head); }
-.dark .display .accent { color: var(--d-label); }
+.dark .display .second { color: var(--d-second); }
 
-.label {
-  font: 700 var(--fs-label)/1.2 "Archivo", sans-serif;
-  font-stretch: 112%;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--brand);
-}
-.dark .label { color: var(--d-label); }
-
-.h3 {
-  font: 700 var(--fs-h3)/1.15 "Archivo", sans-serif;
-  font-stretch: 106%;
-  letter-spacing: -0.005em;
-  color: var(--t-head);
-}
+.h3 { font: 600 var(--fs-h3)/1.2 "Inter", sans-serif; letter-spacing: -0.02em; color: var(--t-head); }
 .dark .h3 { color: var(--d-head); }
-
-.item {
-  font: 700 var(--fs-small)/1.2 "Archivo", sans-serif;
-  font-stretch: 108%;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--t-head);
-}
+.item { font: 600 var(--fs-body)/1.25 "Inter", sans-serif; letter-spacing: -0.012em; color: var(--t-head); }
 .dark .item { color: var(--d-head); }
-
-.lead { font: 500 var(--fs-lead)/1.45 "Inter", sans-serif; color: var(--t-head); letter-spacing: -0.005em; }
+.lead { font: 500 var(--fs-lead)/1.5 "Inter", sans-serif; letter-spacing: -0.012em; color: var(--t-head); }
 .dark .lead { color: var(--d-head); }
 p + p { margin-top: 2.2mm; }
-.small { font-size: var(--fs-small); line-height: 1.45; }
-.mute { color: var(--t-mute); }
+.small { font-size: var(--fs-small); line-height: 1.5; }
+.label { font: 500 var(--fs-label)/1.3 "Inter", sans-serif; color: var(--t-second); }
+.dark .label { color: var(--d-second); }
 .dark { color: var(--d-body); }
+
+/* Outlined pill tag with a dot, as on the website */
+.pill {
+  display: inline-flex; align-items: center; gap: 1.6mm;
+  border: 0.25mm solid var(--line); border-radius: 99mm;
+  padding: 1.3mm 3.2mm; background: var(--page);
+  font: 500 var(--fs-label)/1 "Inter", sans-serif; color: var(--t-head); letter-spacing: -0.005em;
+}
+.pill::before { content: ""; width: 1.1mm; height: 1.1mm; border-radius: 50%; background: currentColor; }
+.dark .pill { background: transparent; border-color: rgba(255,255,255,.28); color: var(--d-head); }
 
 /* ---------- Running header (pages 2–4) --------------------------- */
 .runhead {
-  position: absolute; left: var(--m); right: var(--m); top: 9mm; height: 7mm;
-  display: flex; align-items: center; gap: 3mm;
-  border: 0 solid var(--rule); border-bottom-width: 0.25mm;
+  position: absolute; left: var(--m); right: var(--m); top: 10mm; height: 8mm;
+  display: flex; align-items: center; gap: 2.6mm;
 }
-.runhead .logo { position: relative; width: 6mm; height: 5.2mm; }
-.runhead .t { font: 700 var(--fs-label)/1 "Archivo", sans-serif; font-stretch: 112%; letter-spacing: .2em; text-transform: uppercase; color: var(--t-head); }
-.runhead .s { font: 500 var(--fs-label)/1 "Archivo", sans-serif; font-stretch: 112%; letter-spacing: .2em; text-transform: uppercase; color: var(--t-mute); }
-.runhead .pg { margin-left: auto; font: 700 var(--fs-label)/1 "Archivo", sans-serif; letter-spacing: .2em; color: var(--brand); }
+.runhead .logo { position: relative; width: 6.4mm; height: 5.6mm; }
+.runhead .t { font: 600 var(--fs-label)/1 "Inter", sans-serif; color: var(--t-head); }
+.runhead .s { font: 500 var(--fs-label)/1 "Inter", sans-serif; color: var(--t-second); }
+.runhead .pg { margin-left: auto; font: 600 var(--fs-label)/1 "Inter", sans-serif; color: var(--t-head);
+  border: .25mm solid var(--line); border-radius: 99mm; padding: 1.3mm 2.8mm; }
 
 /* Headline slot: identical on every interior page */
-.headline { left: var(--m); top: 25mm; width: 104mm; }
-.headline .intro { margin-top: 7mm; width: 98mm; }
+.headline { left: var(--m); top: 27mm; width: 98mm; }
+.headline .pill { margin-bottom: 5mm; }
+.headline .intro { margin-top: 6mm; }
 .headline .intro .lead { margin-bottom: 3mm; }
 
-/* ---------- Photos ------------------------------------------------ */
-.photo { position: absolute; overflow: hidden; background: var(--brand); }
+/* ---------- Cards and photos ------------------------------------- */
+.card { background: var(--card); border-radius: var(--r); padding: 5mm; }
+.card.blue { background: var(--brand); }
+.card.navy { background: var(--navy); }
+.photo { position: absolute; overflow: hidden; background: var(--card); border-radius: var(--r-photo); }
 .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.photo.is-empty { background: repeating-linear-gradient(135deg, rgba(255,255,255,.06) 0 1.2mm, transparent 1.2mm 4mm), #2C526C; }
-.photo.is-empty .ph-label { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); color: #fff; font: 600 6pt/1.3 "Inter"; border: .25mm dashed rgba(255,255,255,.6); padding: 1.5mm 2mm; text-align: center; }
+.photo.is-empty { background: #DDE2E6; }
+.photo.is-empty .ph-label { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); color: var(--t-head); font: 600 6pt/1.3 "Inter"; border: .25mm dashed var(--t-second); padding: 1.5mm 2mm; text-align: center; border-radius: 1.5mm; }
 .photo.is-empty .ph-label b { display: block; }
-/* The one angled gesture: a diagonal left edge on the page's hero photo */
-.cut-left { clip-path: polygon(16mm 0, 100% 0, 100% 100%, 0 100%); }
-
-.caption { font: 700 var(--fs-label)/1.3 "Archivo", sans-serif; font-stretch: 112%; letter-spacing: .18em; text-transform: uppercase; color: var(--t-mute); margin-top: 2mm; }
+/* white pill overlaid on a photo, as on the website's photo card */
+.tagon { position: absolute; left: 4mm; bottom: 4mm; background: var(--page); border-radius: 99mm; padding: 2mm 4mm;
+  font: 500 var(--fs-small)/1.2 "Inter", sans-serif; color: var(--t-second); }
+.tagon b { color: var(--brand); font-weight: 600; }
+.caption { font: 500 var(--fs-label)/1.3 "Inter", sans-serif; color: var(--t-second); margin-top: 2mm; }
 
 /* ---------- Logo holders ----------------------------------------- */
 .logo { position: absolute; display: flex; align-items: center; }
 .logo img { max-width: 100%; max-height: 100%; object-fit: contain; object-position: left center; }
 
-/* ---------- Icon badges ------------------------------------------ */
-.badge { width: 8.4mm; height: 8.4mm; border-radius: 50%; background: var(--navy); color: var(--white); display: grid; place-items: center; flex: none; }
-.badge svg { width: 4.8mm; height: 4.8mm; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-.badge.brand { background: var(--brand); }
+/* ---------- Icon buttons: white circle on grey card ------------- */
+.ibtn { width: 9mm; height: 9mm; border-radius: 50%; background: var(--page); color: var(--t-head); display: grid; place-items: center; flex: none; }
+.ibtn svg { width: 4.6mm; height: 4.6mm; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.ibtn.blue { background: var(--brand); color: var(--page); }
 
 /* ---------- Placeholders for unsupplied business details --------- */
-.tbc { display: inline-block; font: 600 var(--fs-small)/1.3 "Inter"; color: var(--brand); border: 0.25mm dashed rgba(44,82,108,.6); padding: .6mm 1.4mm; }
+.tbc { display: inline-block; font: 600 var(--fs-small)/1.3 "Inter"; color: var(--brand); border: 0.25mm dashed rgba(44,82,108,.6); border-radius: 1.5mm; padding: .6mm 1.6mm; }
 .dark .tbc { color: #fff; border-color: rgba(255,255,255,.5); }
 
 /* =================================================================
    PAGE 1 — COVER
    ================================================================= */
-.p1 { background: var(--navy); }
-.p1 .hero { left: 0; top: 0; width: 210mm; height: 172mm; clip-path: polygon(0 0, 100% 0, 100% 148mm, 0 170mm); }
-.p1 .veil { left: 0; top: 0; width: 210mm; height: 70mm; background: linear-gradient(180deg, rgba(27,43,56,.55), rgba(27,43,56,0)); }
-.p1 .logo { left: var(--m); top: 13mm; width: 44mm; height: 36mm; }
-.p1 .edition { right: var(--m); top: 15mm; text-align: right; color: var(--white); }
-.p1 .edition .label { color: var(--white); }
-.p1 .edition .label + .label { margin-top: 1.6mm; color: var(--d-body); font-weight: 500; }
-.p1 .title { left: var(--m); top: 188mm; width: 178mm; }
-.p1 .title .display { font-size: var(--fs-cover); line-height: .95; }
-.p1 .sub { left: var(--m); top: 243mm; width: 120mm; }
-
-.p1 .sub .label { margin-top: 2mm; }
-.p1 .base { left: var(--m); right: var(--m); bottom: 11mm; display: flex; justify-content: space-between; border-top: .25mm solid var(--rule-d); padding-top: 3mm; }
-.p1 .base .label { color: var(--d-body); }
-.p1 .base .label b { color: var(--white); font-weight: 700; }
+.p1 .logo { left: var(--m); top: 14mm; width: 36mm; height: 30mm; }
+.p1 .edition { right: var(--m); top: 20mm; }
+.p1 .title { left: var(--m); top: 60mm; width: 178mm; }
+.p1 .title .display { font-size: var(--fs-cover); line-height: 1.06; }
+.p1 .title .lead { margin-top: 5mm; width: 120mm; color: var(--t-body); font-weight: 400; }
+.p1 .hero { left: var(--m); top: 112mm; width: 178mm; height: 86mm; }
+.p1 .trio { left: var(--m); top: 202mm; width: 178mm; height: 56mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; }
+.p1 .trio .card { position: relative; }
+.p1 .trio .card .ibtn { position: absolute; right: 4mm; top: 4mm; }
+.p1 .trio .card .item { font-size: var(--fs-h3); padding-right: 11mm; }
+.p1 .trio .card .small { position: absolute; left: 5mm; right: 5mm; bottom: 5mm; }
+.p1 .trio .photo { position: relative; height: 100%; }
+.p1 .badge-card { right: 22mm; top: 214mm; width: 64mm; padding: 4.6mm 5mm; }
+.p1 .badge-card .h3 { margin-top: 1.4mm; }
+.p1 .base { left: var(--m); right: var(--m); top: 270mm; display: flex; justify-content: space-between; align-items: center; }
+.p1 .base .site { font: 600 var(--fs-small)/1 "Inter", sans-serif; color: var(--t-head); }
 
 /* =================================================================
    PAGE 2 — ABOUT & CAPABILITIES
    ================================================================= */
-.p2 .founders { left: 122.17mm; top: 25mm; width: 87.83mm; height: 92mm; }
-.p2 .card { left: 126mm; top: 100mm; width: 68mm; background: var(--brand); color: var(--white); padding: 4mm 5mm 4.4mm; }
-.p2 .card .label { color: var(--d-body); }
-.p2 .card .h3 { color: var(--white); margin-top: 1.8mm; }
-.p2 .card .small { color: var(--d-body); margin-top: 1mm; }
-
-.p2 .svc-head { left: var(--m); top: 146mm; width: 117mm; }
-.p2 .svc-head .h3 { margin-top: 2.4mm; }
-.p2 .svc { left: var(--m); top: 164mm; width: 117.33mm; display: grid; grid-template-columns: 1fr 1fr; column-gap: 4mm; }
-.p2 .svc > div { display: flex; gap: 3mm; padding: 3.6mm 0 3.8mm; min-height: 26mm; border-top: .25mm solid var(--rule); }
-.p2 .svc .small { margin-top: 1.2mm; }
-.p2 .work { left: 137.33mm; top: 146mm; width: 72.67mm; height: 151mm; }
-.p2 .facts { left: 0; top: 249mm; width: 137.33mm; height: 48mm; background: var(--navy); padding: 0 0 0 var(--m); display: grid; align-content: center; grid-template-columns: repeat(3, 37mm); column-gap: 4mm; }
-.p2 .facts span { border-top: .25mm solid var(--d-label); padding-top: 2.6mm; font: 700 var(--fs-small)/1.3 "Archivo", sans-serif; font-stretch: 108%; letter-spacing: .06em; text-transform: uppercase; color: var(--d-head); }
+.p2 .founders { left: 122mm; top: 27mm; width: 72mm; height: 106mm; }
+.p2 .svc-head { left: var(--m); top: 148mm; width: 178mm; }
+.p2 .svc { left: var(--m); top: 158mm; width: 117mm; display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
+.p2 .svc .card { padding: 4mm 15mm 4.4mm 4mm; min-height: 32mm; position: relative; }
+.p2 .svc .card .ibtn { position: absolute; right: 3.4mm; top: 3.4mm; }
+.p2 .svc .card .small { margin-top: 1.6mm; }
+.p2 .work { left: 137mm; top: 158mm; width: 57mm; height: 102mm; }
+.p2 .facts { left: var(--m); top: 270mm; width: 178mm; display: flex; gap: 2.4mm; flex-wrap: wrap; }
 
 /* =================================================================
    PAGE 3 — PROPERTY MANAGEMENT PARTNERSHIPS
    ================================================================= */
-.p3 .hero { left: 122.17mm; top: 25mm; width: 87.83mm; height: 96mm; }
-.p3 .who { margin-top: 6mm; width: 98mm; display: grid; grid-template-columns: 1fr 1fr; column-gap: 4mm; list-style: none; }
-.p3 .who li { padding: 2mm 0; border-top: .25mm solid var(--rule); font: 700 var(--fs-label)/1.25 "Archivo", sans-serif; font-stretch: 112%; letter-spacing: .14em; text-transform: uppercase; color: var(--t-head); }
-.p3 .ben-head { left: var(--m); top: 134mm; }
-.p3 .ben { left: var(--m); top: 142mm; width: 178mm; display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 4mm; row-gap: 0; }
-.p3 .ben > div { padding: 4.6mm 0 6mm; border-top: .25mm solid var(--rule); }
-.p3 .ben .row { display: flex; align-items: center; gap: 3mm; margin-bottom: 2mm; }
-.p3 .flow-panel { left: 0; top: 216mm; width: 210mm; height: 81mm; background: var(--navy); }
-.p3 .flow-head { left: var(--m); top: 230mm; width: 178mm; display: flex; justify-content: space-between; align-items: baseline; }
-.p3 .flow { left: var(--m); top: 244mm; width: 178mm; display: grid; grid-template-columns: repeat(4, 1fr); column-gap: 4mm; }
-.p3 .step { border-top: .25mm solid var(--rule-d); padding-top: 3mm; position: relative; }
-.p3 .step .n { font: 800 var(--fs-h3)/1 "Archivo", sans-serif; font-stretch: 106%; color: var(--d-label); }
-.p3 .step .item { margin-top: 2mm; }
-.p3 .step .small { margin-top: 1.4mm; color: var(--d-body); }
-.p3 .step .arrow { position: absolute; right: 0; top: 3.4mm; width: 6mm; height: 3mm; stroke: var(--d-label); fill: none; stroke-width: 1.2; }
-.p3 .step.first { border-top-color: var(--d-label); }
+.p3 .hero { left: 122mm; top: 27mm; width: 72mm; height: 106mm; }
+.p3 .who { margin-top: 5mm; display: flex; flex-wrap: wrap; gap: 2mm; list-style: none; }
+.p3 .who li { border: .25mm solid var(--line); border-radius: 99mm; padding: 1.4mm 3mm; font: 500 var(--fs-label)/1 "Inter", sans-serif; color: var(--t-head); }
+.p3 .ben-head { left: var(--m); top: 146mm; }
+.p3 .ben { left: var(--m); top: 156mm; width: 178mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; }
+.p3 .ben .card { padding: 4mm; min-height: 30mm; }
+.p3 .ben .card .row { display: flex; align-items: center; gap: 3mm; }
+.p3 .ben .card .small { margin-top: 2mm; }
+.p3 .flow-card { left: var(--m); top: 225mm; width: 178mm; height: 58mm; padding: 6mm; }
+.p3 .flow-head { display: flex; justify-content: space-between; align-items: center; }
+.p3 .flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin-top: 6mm; }
+.p3 .step { position: relative; }
+.p3 .step .n { display: inline-grid; place-items: center; width: 7.4mm; height: 7.4mm; border-radius: 50%; background: rgba(255,255,255,.12);
+  font: 600 var(--fs-label)/1 "Inter", sans-serif; color: var(--d-head); }
+.p3 .step.last .n { background: var(--page); color: var(--navy); }
+.p3 .step .item { margin-top: 2.6mm; }
+.p3 .step .small { margin-top: 1.2mm; color: var(--d-body); }
+.p3 .step .arrow { position: absolute; right: 2mm; top: 2.2mm; width: 6mm; height: 3mm; stroke: rgba(255,255,255,.45); fill: none; stroke-width: 1.2; }
 
 /* =================================================================
    PAGE 4 — OUR WORK & CONTACT
    ================================================================= */
-.p4 .kitchen { left: 122.17mm; top: 25mm; width: 87.83mm; height: 80mm; }
-.p4 .grid-head { left: var(--m); top: 113mm; }
-.p4 .grid { left: var(--m); top: 120mm; width: 178mm; display: grid; grid-template-columns: repeat(4, 1fr); column-gap: 4mm; }
-.p4 .grid .photo { position: relative; height: 38mm; }
-.p4 .creds { left: var(--m); top: 175mm; width: 178mm; }
-.p4 .creds .row { display: grid; grid-template-columns: repeat(4, 1fr); column-gap: 4mm; margin-top: 3mm; }
-.p4 .creds .cell { border-top: .25mm solid var(--rule); padding-top: 2.6mm; }
-.p4 .creds .cell .label { color: var(--t-head); margin-bottom: 1.8mm; }
-.p4 .contact { left: 0; top: 212mm; width: 210mm; height: 85mm; background: var(--navy); }
-.p4 .cta { left: var(--m); top: 222mm; width: 110mm; }
-.p4 .cta .display { margin-top: 3mm; text-transform: none; letter-spacing: -0.015em; }
-.p4 .details { left: var(--m); top: 258mm; width: 117.33mm; display: grid; grid-template-columns: 1fr 1fr; column-gap: 4mm; row-gap: 3mm; }
-.p4 .details .label { margin-bottom: 1.2mm; }
-.p4 .details .v { font: 500 var(--fs-body)/1.3 "Inter"; color: var(--white); }
-.p4 .brand-col { left: 152.5mm; top: 222mm; width: 41.5mm; }
-.p4 .brand-col .logo { position: relative; width: 41.5mm; height: 34mm; justify-content: center; }
-.p4 .brand-col .logo img { object-position: center; }
-.p4 .qr-row { display: flex; gap: 3mm; align-items: flex-end; margin-top: 4mm; }
-.p4 .qr { width: 21mm; height: 21mm; background: var(--white); padding: 1.6mm; flex: none; }
+.p4 .kitchen { left: 122mm; top: 27mm; width: 72mm; height: 82mm; }
+.p4 .grid-head { left: var(--m); top: 117mm; }
+.p4 .grid { left: var(--m); top: 127mm; width: 178mm; display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; }
+.p4 .grid .photo { position: relative; height: 36mm; }
+.p4 .creds { left: var(--m); top: 177mm; width: 178mm; }
+.p4 .creds .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin-top: 3.4mm; }
+.p4 .creds .card { padding: 3.6mm 4mm 4mm; }
+.p4 .creds .card .label { color: var(--t-head); font-weight: 600; margin-bottom: 2mm; }
+.p4 .contact { left: var(--m); top: 214mm; width: 178mm; height: 69mm; padding: 7mm; }
+.p4 .contact .display { margin-top: 4mm; }
+.p4 .details { position: absolute; left: 7mm; bottom: 7mm; width: 112mm; display: grid; grid-template-columns: 1fr 1fr; column-gap: 4mm; row-gap: 3mm; }
+.p4 .details .label { margin-bottom: 1mm; }
+.p4 .details .v { font: 500 var(--fs-body)/1.3 "Inter"; color: #FFFFFF; }
+.p4 .brand-col { position: absolute; right: 7mm; top: 7mm; bottom: 7mm; width: 40mm; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; }
+.p4 .brand-col .logo { position: relative; width: 36mm; height: 28mm; justify-content: flex-end; }
+.p4 .brand-col .logo img { object-position: right center; }
+.p4 .qr-row { display: flex; gap: 3mm; align-items: center; }
+.p4 .qr { width: 20mm; height: 20mm; background: var(--page); padding: 1.6mm; border-radius: 2mm; flex: none; }
 .p4 .qr img { width: 100%; height: 100%; display: block; }
-.p4 .qr-row .label { color: var(--d-body); }
+
+.p2 .founders-card { left: 126mm; top: 109mm; width: 64mm; background: var(--page); padding: 3.6mm 4.4mm 4mm; }
+.p2 .founders-card .item { margin-top: 1.2mm; font-size: var(--fs-lead); }
+.p2 .founders-card .small { color: var(--t-second); margin-top: .6mm; }

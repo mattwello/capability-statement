@@ -54,7 +54,7 @@ const qa = await page.evaluate(() => {
   const mm = 96 / 25.4;
   const out = [];
   // every text role in v1 and v2 of the layout
-  const textSel = ".display, p, .label, .h3, .item, .lead, .small, .caption, .runhead span, .who li, .facts span, .h-item, .kicker, .tbc, .v, .h, .t, .d, .n, .no, .title, .place, .edition, .base, .folio, .scan, .co, .k, .r, .note, .caps span, .ph-label";
+  const textSel = ".display, p, .pill, .tagon, .label, .h3, .item, .lead, .small, .caption, .runhead span, .who li, .facts span, .h-item, .kicker, .tbc, .v, .h, .t, .d, .n, .no, .title, .place, .edition, .base, .folio, .scan, .co, .k, .r, .note, .caps span, .ph-label";
   // opaque blocks text must not run underneath: photos plus anything marked .block
   const blockSel = ".photo, .block";
   document.querySelectorAll(".page").forEach((pg, i) => {

@@ -1,0 +1,251 @@
+/* ==================================================================
+   WESTCOAST ENERGY — CAPABILITY STATEMENT · DESIGN SYSTEM v2
+   A4 portrait, 210 × 297 mm. Layout in mm, type in pt.
+
+   v2 rules (from the design teardown, see /teardown):
+   · 12-column grid: 16 mm margins, 4 mm gutters, 11.17 mm columns
+   · Seven type sizes, four weights
+   · One navy block and one angled photo per interior page
+   · Same running header, headline size and headline position on pages 2–4
+   · Two hairlines only: one on paper, one on navy
+   ================================================================== */
+
+@font-face {
+  font-family: "Archivo";
+  src: url("fonts/archivo-latin-wdth-normal.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/inter-latin-wght-normal.woff2") format("woff2-variations");
+  font-weight: 100 900;
+}
+
+:root {
+  /* Brand */
+  --brand: #2C526C;
+  --navy: #1B2B38;
+  --paper: #F2F0EA;
+  --white: #FFFFFF;
+  --grey: #D1D9DC;
+
+  /* Text roles: paper */
+  --t-head: #1B2B38;   /* headings */
+  --t-body: #3A4853;   /* body */
+  --t-mute: #6E7C86;   /* captions, labels */
+  /* Text roles: navy */
+  --d-head: #FFFFFF;
+  --d-body: #B4C3CC;
+  --d-label: #8FB0C4;  /* steel: labels and accent words on navy */
+
+  /* Hairlines: exactly two */
+  --rule: #D3D5CF;                     /* on paper */
+  --rule-d: rgba(255, 255, 255, 0.16); /* on navy  */
+
+  /* Type scale: seven sizes */
+  --fs-cover: 34pt;
+  --fs-display: 26pt;
+  --fs-h3: 12pt;
+  --fs-lead: 10pt;
+  --fs-body: 8.6pt;
+  --fs-small: 7.4pt;
+  --fs-label: 6.2pt;
+
+  /* Grid */
+  --m: 16mm;
+  --col: 11.1667mm;
+  --gut: 4mm;
+}
+
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+body {
+  background: #8A949A;
+  font: 400 var(--fs-body)/1.5 "Inter", sans-serif;
+  color: var(--t-body);
+  -webkit-font-smoothing: antialiased;
+}
+@media screen { body { padding: 12mm 0; } .page { margin: 0 auto 12mm; box-shadow: 0 2mm 8mm rgba(0,0,0,.35); } }
+@media print { body { background: none; } }
+
+.page {
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  overflow: hidden;
+  background: var(--paper);
+  break-after: page;
+}
+.page:last-child { break-after: auto; }
+.abs { position: absolute; }
+svg.shape { position: absolute; inset: 0; width: 210mm; height: 297mm; }
+
+/* ---------- Type roles ------------------------------------------ */
+.display {
+  font: 800 var(--fs-display)/0.98 "Archivo", sans-serif;
+  font-stretch: 106%;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: var(--t-head);
+}
+.display .accent { color: var(--brand); }
+.dark .display { color: var(--d-head); }
+.dark .display .accent { color: var(--d-label); }
+
+.label {
+  font: 700 var(--fs-label)/1.2 "Archivo", sans-serif;
+  font-stretch: 112%;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brand);
+}
+.dark .label { color: var(--d-label); }
+
+.h3 {
+  font: 700 var(--fs-h3)/1.15 "Archivo", sans-serif;
+  font-stretch: 106%;
+  letter-spacing: -0.005em;
+  color: var(--t-head);
+}
+.dark .h3 { color: var(--d-head); }
+
+.item {
+  font: 700 var(--fs-small)/1.2 "Archivo", sans-serif;
+  font-stretch: 108%;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--t-head);
+}
+.dark .item { color: var(--d-head); }
+
+.lead { font: 500 var(--fs-lead)/1.45 "Inter", sans-serif; color: var(--t-head); letter-spacing: -0.005em; }
+.dark .lead { color: var(--d-head); }
+p + p { margin-top: 2.2mm; }
+.small { font-size: var(--fs-small); line-height: 1.45; }
+.mute { color: var(--t-mute); }
+.dark { color: var(--d-body); }
+
+/* ---------- Running header (pages 2–4) --------------------------- */
+.runhead {
+  position: absolute; left: var(--m); right: var(--m); top: 9mm; height: 7mm;
+  display: flex; align-items: center; gap: 3mm;
+  border: 0 solid var(--rule); border-bottom-width: 0.25mm;
+}
+.runhead .logo { position: relative; width: 6mm; height: 5.2mm; }
+.runhead .t { font: 700 var(--fs-label)/1 "Archivo", sans-serif; font-stretch: 112%; letter-spacing: .2em; text-transform: uppercase; color: var(--t-head); }
+.runhead .s { font: 500 var(--fs-label)/1 "Archivo", sans-serif; font-stretch: 112%; letter-spacing: .2em; text-transform: uppercase; color: var(--t-mute); }
+.runhead .pg { margin-left: auto; font: 700 var(--fs-label)/1 "Archivo", sans-serif; letter-spacing: .2em; color: var(--brand); }
+
+/* Headline slot: identical on every interior page */
+.headline { left: var(--m); top: 25mm; width: 104mm; }
+.headline .intro { margin-top: 7mm; width: 98mm; }
+.headline .intro .lead { margin-bottom: 3mm; }
+
+/* ---------- Photos ------------------------------------------------ */
+.photo { position: absolute; overflow: hidden; background: var(--brand); }
+.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.photo.is-empty { background: repeating-linear-gradient(135deg, rgba(255,255,255,.06) 0 1.2mm, transparent 1.2mm 4mm), #2C526C; }
+.photo.is-empty .ph-label { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); color: #fff; font: 600 6pt/1.3 "Inter"; border: .25mm dashed rgba(255,255,255,.6); padding: 1.5mm 2mm; text-align: center; }
+.photo.is-empty .ph-label b { display: block; }
+/* The one angled gesture: a diagonal left edge on the page's hero photo */
+.cut-left { clip-path: polygon(16mm 0, 100% 0, 100% 100%, 0 100%); }
+
+.caption { font: 700 var(--fs-label)/1.3 "Archivo", sans-serif; font-stretch: 112%; letter-spacing: .18em; text-transform: uppercase; color: var(--t-mute); margin-top: 2mm; }
+
+/* ---------- Logo holders ----------------------------------------- */
+.logo { position: absolute; display: flex; align-items: center; }
+.logo img { max-width: 100%; max-height: 100%; object-fit: contain; object-position: left center; }
+
+/* ---------- Icon badges ------------------------------------------ */
+.badge { width: 8.4mm; height: 8.4mm; border-radius: 50%; background: var(--navy); color: var(--white); display: grid; place-items: center; flex: none; }
+.badge svg { width: 4.8mm; height: 4.8mm; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.badge.brand { background: var(--brand); }
+
+/* ---------- Placeholders for unsupplied business details --------- */
+.tbc { display: inline-block; font: 600 var(--fs-small)/1.3 "Inter"; color: var(--brand); border: 0.25mm dashed rgba(44,82,108,.6); padding: .6mm 1.4mm; }
+.dark .tbc { color: #fff; border-color: rgba(255,255,255,.5); }
+
+/* =================================================================
+   PAGE 1 — COVER
+   ================================================================= */
+.p1 { background: var(--navy); }
+.p1 .hero { left: 0; top: 0; width: 210mm; height: 172mm; clip-path: polygon(0 0, 100% 0, 100% 148mm, 0 170mm); }
+.p1 .veil { left: 0; top: 0; width: 210mm; height: 70mm; background: linear-gradient(180deg, rgba(27,43,56,.55), rgba(27,43,56,0)); }
+.p1 .logo { left: var(--m); top: 13mm; width: 44mm; height: 36mm; }
+.p1 .edition { right: var(--m); top: 15mm; text-align: right; color: var(--white); }
+.p1 .edition .label { color: var(--white); }
+.p1 .edition .label + .label { margin-top: 1.6mm; color: var(--d-body); font-weight: 500; }
+.p1 .title { left: var(--m); top: 188mm; width: 178mm; }
+.p1 .title .display { font-size: var(--fs-cover); line-height: .95; }
+.p1 .sub { left: var(--m); top: 243mm; width: 120mm; }
+
+.p1 .sub .label { margin-top: 2mm; }
+.p1 .base { left: var(--m); right: var(--m); bottom: 11mm; display: flex; justify-content: space-between; border-top: .25mm solid var(--rule-d); padding-top: 3mm; }
+.p1 .base .label { color: var(--d-body); }
+.p1 .base .label b { color: var(--white); font-weight: 700; }
+
+/* =================================================================
+   PAGE 2 — ABOUT & CAPABILITIES
+   ================================================================= */
+.p2 .founders { left: 122.17mm; top: 25mm; width: 87.83mm; height: 92mm; }
+.p2 .card { left: 126mm; top: 100mm; width: 68mm; background: var(--brand); color: var(--white); padding: 4mm 5mm 4.4mm; }
+.p2 .card .label { color: var(--d-body); }
+.p2 .card .h3 { color: var(--white); margin-top: 1.8mm; }
+.p2 .card .small { color: var(--d-body); margin-top: 1mm; }
+
+.p2 .svc-head { left: var(--m); top: 146mm; width: 117mm; }
+.p2 .svc-head .h3 { margin-top: 2.4mm; }
+.p2 .svc { left: var(--m); top: 164mm; width: 117.33mm; display: grid; grid-template-columns: 1fr 1fr; column-gap: 4mm; }
+.p2 .svc > div { display: flex; gap: 3mm; padding: 3.6mm 0 3.8mm; min-height: 26mm; border-top: .25mm solid var(--rule); }
+.p2 .svc .small { margin-top: 1.2mm; }
+.p2 .work { left: 137.33mm; top: 146mm; width: 72.67mm; height: 151mm; }
+.p2 .facts { left: 0; top: 249mm; width: 137.33mm; height: 48mm; background: var(--navy); padding: 0 0 0 var(--m); display: grid; align-content: center; grid-template-columns: repeat(3, 37mm); column-gap: 4mm; }
+.p2 .facts span { border-top: .25mm solid var(--d-label); padding-top: 2.6mm; font: 700 var(--fs-small)/1.3 "Archivo", sans-serif; font-stretch: 108%; letter-spacing: .06em; text-transform: uppercase; color: var(--d-head); }
+
+/* =================================================================
+   PAGE 3 — PROPERTY MANAGEMENT PARTNERSHIPS
+   ================================================================= */
+.p3 .hero { left: 122.17mm; top: 25mm; width: 87.83mm; height: 96mm; }
+.p3 .who { margin-top: 6mm; width: 98mm; display: grid; grid-template-columns: 1fr 1fr; column-gap: 4mm; list-style: none; }
+.p3 .who li { padding: 2mm 0; border-top: .25mm solid var(--rule); font: 700 var(--fs-label)/1.25 "Archivo", sans-serif; font-stretch: 112%; letter-spacing: .14em; text-transform: uppercase; color: var(--t-head); }
+.p3 .ben-head { left: var(--m); top: 134mm; }
+.p3 .ben { left: var(--m); top: 142mm; width: 178mm; display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 4mm; row-gap: 0; }
+.p3 .ben > div { padding: 4.6mm 0 6mm; border-top: .25mm solid var(--rule); }
+.p3 .ben .row { display: flex; align-items: center; gap: 3mm; margin-bottom: 2mm; }
+.p3 .flow-panel { left: 0; top: 216mm; width: 210mm; height: 81mm; background: var(--navy); }
+.p3 .flow-head { left: var(--m); top: 230mm; width: 178mm; display: flex; justify-content: space-between; align-items: baseline; }
+.p3 .flow { left: var(--m); top: 244mm; width: 178mm; display: grid; grid-template-columns: repeat(4, 1fr); column-gap: 4mm; }
+.p3 .step { border-top: .25mm solid var(--rule-d); padding-top: 3mm; position: relative; }
+.p3 .step .n { font: 800 var(--fs-h3)/1 "Archivo", sans-serif; font-stretch: 106%; color: var(--d-label); }
+.p3 .step .item { margin-top: 2mm; }
+.p3 .step .small { margin-top: 1.4mm; color: var(--d-body); }
+.p3 .step .arrow { position: absolute; right: 0; top: 3.4mm; width: 6mm; height: 3mm; stroke: var(--d-label); fill: none; stroke-width: 1.2; }
+.p3 .step.first { border-top-color: var(--d-label); }
+
+/* =================================================================
+   PAGE 4 — OUR WORK & CONTACT
+   ================================================================= */
+.p4 .kitchen { left: 122.17mm; top: 25mm; width: 87.83mm; height: 80mm; }
+.p4 .grid-head { left: var(--m); top: 113mm; }
+.p4 .grid { left: var(--m); top: 120mm; width: 178mm; display: grid; grid-template-columns: repeat(4, 1fr); column-gap: 4mm; }
+.p4 .grid .photo { position: relative; height: 38mm; }
+.p4 .creds { left: var(--m); top: 175mm; width: 178mm; }
+.p4 .creds .row { display: grid; grid-template-columns: repeat(4, 1fr); column-gap: 4mm; margin-top: 3mm; }
+.p4 .creds .cell { border-top: .25mm solid var(--rule); padding-top: 2.6mm; }
+.p4 .creds .cell .label { color: var(--t-head); margin-bottom: 1.8mm; }
+.p4 .contact { left: 0; top: 212mm; width: 210mm; height: 85mm; background: var(--navy); }
+.p4 .cta { left: var(--m); top: 222mm; width: 110mm; }
+.p4 .cta .display { margin-top: 3mm; text-transform: none; letter-spacing: -0.015em; }
+.p4 .details { left: var(--m); top: 258mm; width: 117.33mm; display: grid; grid-template-columns: 1fr 1fr; column-gap: 4mm; row-gap: 3mm; }
+.p4 .details .label { margin-bottom: 1.2mm; }
+.p4 .details .v { font: 500 var(--fs-body)/1.3 "Inter"; color: var(--white); }
+.p4 .brand-col { left: 152.5mm; top: 222mm; width: 41.5mm; }
+.p4 .brand-col .logo { position: relative; width: 41.5mm; height: 34mm; justify-content: center; }
+.p4 .brand-col .logo img { object-position: center; }
+.p4 .qr-row { display: flex; gap: 3mm; align-items: flex-end; margin-top: 4mm; }
+.p4 .qr { width: 21mm; height: 21mm; background: var(--white); padding: 1.6mm; flex: none; }
+.p4 .qr img { width: 100%; height: 100%; display: block; }
+.p4 .qr-row .label { color: var(--d-body); }
